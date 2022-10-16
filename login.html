@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +25,12 @@
         width: 80%;
     }
     
+    #col1 {
+        padding: 34px;
+        margin-top: 90px;
+        margin-left: 0px;
+    }
+    
     #col2 {
         padding: 34px;
         margin-top: 90px;
@@ -36,15 +41,24 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col"></div>
+            <div class="col" id="col1">
+                <h2>About Us</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere corrupti voluptate, consequatur a perferendis qui distinctio ea illum vel adipisci quae numquam iste voluptas ducimus quidem provident nihil nesciunt omnis.
+                </p>
+            </div>
             <div class="col" id="col2">
 
                 <h1>Welcome Back!</h1>
-<<<<<<< HEAD
+
+
                 <form action="/" method="post">
-=======
-                <form action="backend.php">
->>>>>>> 8c776e9ec43f39c5b5a73d7c8059c50687618008
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <form action="/" method="post">
+
                     <label for="email" id="form">Email</label>
                     <br>
                     <div>
@@ -57,23 +71,18 @@
                     </div>
                     <br>
                     <div>
-<<<<<<< HEAD
+
                         <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
                     </div>
                     <br>
                     <div>
                         <p>Not a member? <a href="/public/Signup.html">Register here</a></p>
-=======
-                        <button type="button" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-                    </div>
-                    <br>
-                    <div>
-                        <p>Not a member? <a href="Register.html">Register here</a></p>
->>>>>>> 8c776e9ec43f39c5b5a73d7c8059c50687618008
+
+                    
+
                     </div>
 
                 </form>
-
             </div>
 
         </div>
