@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 20%;
+    background: #f1f1f1;
+    margin-left: 2rem;
+}
+
+form.example button {
+    float: left;
+    width: 5%;
+    padding: 10px;
+    background: #0088a7;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+form.example button:hover {
+    background: black;
+}
+
+form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.vl {
+    border-left: 2px solid #0088a7;
+    height: 100%;
+    position: absolute;
+    left: 30%;
+    margin-left: -3px;
+    top: 0;
+}
