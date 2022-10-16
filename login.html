@@ -51,27 +51,38 @@
 
                 <h1>Welcome Back!</h1>
 
+
                 <form action="/" method="post">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <form action="/" method="post">
+
+                    <label for="email" id="form">Email</label>
+                    <br>
+                    <div>
+                        <input name="email" type="email" name="myEmail" id="ph" placeholder="Enter your email">
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" name="pass" class="form-control" id="exampleInputPassword1">
+                    <br>
+                    <label for="pass" id="form">Password</label>
+                    <div>
+                        <input name="pass" type="password" name="mypassword" id="ph" placeholder="Enter you password">
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                    <br>
+                    <div>
+
+                        <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button><br>
+                    <br>
                     <div>
                         <p>Not a member? <a href="/public/Signup.html">Register here</a></p>
+
+                    
+
                     </div>
 
                 </form>
-
             </div>
 
         </div>
