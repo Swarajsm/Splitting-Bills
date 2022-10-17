@@ -1,85 +1,88 @@
 <!DOCTYPE HTML>
-<html lang = "en">
-    <head>
-        <meta charset = "UTF-8">
-        <title>Smart Splitter | Profile</title><meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel = "stylesheet" href = "ProfileStyle.css">
-        <link rel="stylesheet" href="IndexStyle.css">
+<html lang="en">
 
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Splitter | Profile</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ProfileStyle.css">
+    <link rel="stylesheet" href="../css/groupList.css">
 
-    <body>
-        <!--Navbar section-->
-        <header>
-            <div class="bg-div">
+</head>
 
-                <nav class="navbar" style="padding: 0rem 1.5rem;">
-                    <div id="logo"><img class="logo" src="logo.png" alt="splitter" ALIGN=CENTER></div>
-                    <ul>
-                        <li><a class = "nav_items" href="index.html">Group List</a></li>
-                        <li><a class = "nav_items" href="#">Notifications</a></li>
-                        <li class="dropdown">
-                            <a href="#">
-                                <button class="dropbtn"><i class="bi bi-person-circle"></i></button>
-                                <div class="dropdown-content">
-                                    <a id="list-item" href="#">Profile</a>
-                                    <a id="list-item" href="#">Settings</a>
-                                    <a id="list-item" href="#">Log out</a>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-        </header>
-        <!--End of Navbar section-->
+<body>
+    <!--Navbar section-->
+    <header>
+        <div class="bg-div">
 
-        <!-- Profile section -->
-        <section id = "user_profile">
-            <div id = "profile_container">
-                <div id = "profile_picture">
-                    <!-- <i class ="bi bi-person-circle"></i> -->
-                    <img src = "user_account_avatar.png" alt = "your profile picture">
-                    <a id = "edit_pic" href= "#"><i class="fa fa-pencil"></i></a>
+            <nav class="navbar" style="padding: 0rem 1.5rem;">
+                <div id="logo"><img class="logo" src="../images/logo.png" alt="splitter" ALIGN=CENTER></div>
+                <ul>
+                    <li><a class="nav_items" href="groupList.html">Group List</a></li>
+                    <li><a class="nav_items" href="#">Notifications</a></li>
+                    <li class="dropdown">
+                        <a href="#">
+                            <button class="dropbtn">User <i class="bi bi-person-circle"></i></button>
+                            <div class="dropdown-content">
+                                <a id="list-item" href="Profile.html">Profile</a>
+                                <a id="list-item" href="settings.html">Settings</a>
+                                <a id="list-item" href="../../login.html">Log out</a>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+    </header>
+    <!--End of Navbar section-->
+
+    <!-- Profile section -->
+    <section id="user_profile">
+        <div id="profile_container">
+            <div id="profile_picture">
+                <!-- <i class ="bi bi-person-circle"></i> -->
+                <img src="../images/user_account_avatar.png" alt="your profile picture">
+                <a id="edit_pic" href="#"><i class="fa fa-pencil"></i></a>
+            </div>
+            <div id="profile_details">
+                <div class="pd_elements">
+                    <label class="pd_style_title" for="Name">Name</label>
+                    <p class="pd_style_field">Enter Full name</p>
+                    <a class="edit_btn" href="#"><i id = "name_edit" class="fa fa-pencil"></i></a>
                 </div>
-                <div id = "profile_details">
-                    <div class = "pd_elements">
-                        <label class = "pd_style_title" for = "Name">Name</label>
-                        <p class = "pd_style_field">Your full name</p>
-                        <a class = "edit_btn" href= "#"><i id = "name_edit" class="fa fa-pencil"></i></a>    
-                    </div>
-                    <div class = "pd_elements">
-                        <label class = "pd_style_title" for = "Username">Username</label>
-                        <p class = "pd_style_field">Your username</p>
-                        <a class = "edit_btn" href= "#"><i id = "uname_edit" class="fa fa-pencil"></i></a>    
-                    </div>
-                    <div class = "pd_elements">
-                        <label class = "pd_style_title" for = "Email">Email address</label>
-                        <p class = "pd_style_field">Your email address</p>
-                        <a class = "edit_btn" href= "#"><i id = "email_edit" class="fa fa-pencil"></i></a>
-                    </div>
-                    <div class = "pd_elements">
-                        <label class = "pd_style_title" for = "Ph_no">Phone number</label>
-                        <p class = "pd_style_field">Your phone number</p>
-                        <a class = "edit_btn" href= "#"><i id = "phon_edit"class="fa fa-pencil"></i></a>    
-                    </div>
-                    <div class = "pd_elements">
-                        <label class = "pd_style_title" for = "password">Password</label>
-                        <p class = "pd_style_field">Your password</p>
-                        <a class = "edit_btn" href= "#"><i id = "pswd_edit" class="fa fa-pencil"></i></a>    
-                    </div>
-                    <div class = "pd_elements">
-                        <label class = "pd_style_title" for = "wallet">Wallet balance</label>
-                        <span id = "wb_display"> 0000.00 </span>
-                    </div>    
+                <div class="pd_elements">
+                    <label class="pd_style_title" for="Username">Username</label>
+                    <p class="pd_style_field">Enter Username</p>
+                    <a class="edit_btn" href="#"><i id = "uname_edit" class="fa fa-pencil"></i></a>
+                </div>
+                <div class="pd_elements">
+                    <label class="pd_style_title" for="Email">Email address</label>
+                    <p class="pd_style_field">Enter Email Address</p>
+                    <a class="edit_btn" href="#"><i id = "email_edit" class="fa fa-pencil"></i></a>
+                </div>
+                <div class="pd_elements">
+                    <label class="pd_style_title" for="Ph_no">Phone number</label>
+                    <p class="pd_style_field">Enter Phone Number</p>
+                    <a class="edit_btn" href="#"><i id = "phon_edit"class="fa fa-pencil"></i></a>
+                </div>
+                <div class="pd_elements">
+                    <label class="pd_style_title" for="password">Password</label>
+                    <p class="pd_style_field">Enter your password</p>
+                    <a class="edit_btn" href="#"><i id = "pswd_edit" class="fa fa-pencil"></i></a>
+                </div>
+                <div class="pd_elements">
+                    <label class="pd_style_title" for="wallet">Wallet balance</label>
+                    <span id="wb_display"> 0000.00 </span>
                 </div>
             </div>
-        </section>
-        <!-- End of profile section -->
-    </body>
+        </div>
+    </section>
+    <!-- End of profile section -->
+</body>
+
 </html>
