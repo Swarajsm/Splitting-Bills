@@ -1,0 +1,152 @@
+*{
+    margin: 0px;
+    border: 0px;
+}
+:root{
+    --Primary: rgb(0, 136, 167);
+    --accent: rgb(193, 236, 245);
+    --Grey900: #1D1B1B;
+    --Grey700: #373737;
+    --Grey500: #7B7B7B;
+    --GreyWhite: #F3F3F3;
+}
+.edit_btn i{
+    font-size: 25px;
+    color: var(--Grey700);
+}
+
+.edit_btn i:hover{
+    color: var(--Primary);
+}
+
+#profile_container{
+    /* border: 2px solid red; */
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 153px;
+    left: 41px;
+}
+
+#profile_picture{
+    /* border: 2px solid black; */
+    height: 200px;
+    width: 200px;
+}
+
+#profile_picture img{
+    height: 155px;
+    width: 155px;
+}
+/*#profile_picture i{
+    font-size: 115px;
+    position: absolute;
+    top: -45px;
+}*/
+
+#profile_picture #edit_pic {
+    /* border: 2px solid green; */
+    background-color: var(--Primary);
+    position: absolute;
+    top: 88px;
+    left: 122px;
+    padding: 20px;
+    border-radius: 23px;
+}
+
+#profile_picture #edit_pic i{
+    /* border: 2px solid green; */
+    border-radius: 3px;
+    font-size: 20px;
+    color: var(--GreyWhite);
+    position: absolute;
+    top: 10px;
+    left: 14px;
+}
+
+/* #profile_picture #edit_pic:hover{
+    padding: 22px;
+} */
+
+#profile_picture #edit_pic i:hover{
+    /* color: var(--accent); */
+    font-size: 22px;
+}
+
+#profile_details{
+    /* border: 2px solid blue; */
+    width: 597px;
+    position: absolute;
+    left: 243px;
+    top: 30px;
+}
+
+#profile_details .pd_elements{
+    /* border: 2px solid orangered;  */
+    margin-bottom: 30px;
+
+}
+
+.pd_elements .pd_style_title{
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--Grey900);
+}
+.pd_elements .pd_style_field{
+    color: var(--Grey700);
+    border-bottom: 2px solid var(--Grey700);
+    width: 590px;
+}
+
+/*#profile_details .pd_elements .edit_btn{
+    /* border: 2px solid green; 
+    position: absolute;
+    left: 320px;
+    top: 34px;
+}*/
+
+.pd_elements a #name_edit{
+    /* border: 2px solid black; */
+    position: absolute;
+    left: 563px;
+    top: 35px;
+}
+
+.pd_elements a #uname_edit{
+    /* border: 2px solid black; */
+    position: absolute;
+    left: 563px;
+    top: 130px;
+}
+
+.pd_elements a #email_edit{
+    /* border: 2px solid black; */
+    position: absolute;
+    left: 563px;
+    top: 224px;
+}
+
+.pd_elements a #phon_edit{
+    /* border: 2px solid black; */
+    position: absolute;
+    left: 563px;
+    top: 318px;
+}
+
+.pd_elements a #pswd_edit{
+    /* border: 2px solid black; */
+    position: absolute;
+    left: 563px;
+    top: 412px;
+}
+
+.pd_elements #wb_display{
+    border: 2px solid var(--Grey700);
+    border-radius: 4px;
+    margin-left: 16px;
+    display: inline-block;
+    width: 142px;
+    text-align: center;
+    color: var(--Grey900);
+}
