@@ -42,7 +42,7 @@ app.post("/",function(req, res){
     }
     db.collection('user').findOne(data, function(err, collection){
         if (err) throw err;
-        return res.redirect('/html/Group-Index.html');
+        return res.redirect('/html/groupList.html');
     })
 })
 
