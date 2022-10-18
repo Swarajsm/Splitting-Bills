@@ -52,6 +52,7 @@ app.post("/Signup.html", async(req, res) => {
         var email = req.body.email;
         var pass = req.body.pass;
         const hashedPass = await bcrypt.hash(pass, 10);
+
         var userdata = {
             _id: Date.now.toString,
             "name": fname + " " + lname,
@@ -70,6 +71,11 @@ app.post("/Signup.html", async(req, res) => {
         res.redirect('/Signup.html')
     }
 })
+
+app.post("/groupList.html", (req, res) => {
+    var GName = req.body.groupNm
+
+});
 
 
 //Setting up our server at port 3000

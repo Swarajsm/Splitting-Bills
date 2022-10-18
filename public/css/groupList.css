@@ -164,7 +164,12 @@ body {
     height: 30px;
 }
 
-#nameofgroup {
-    width: 30rem;
-    height: 2.5rem;
+.Group-List {
+    list-style: none;
 }
+
+#details-btn {
+    background-color: rgb(0, 136, 167);
+}
+
+.group {}
