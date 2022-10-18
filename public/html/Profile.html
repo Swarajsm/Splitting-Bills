@@ -19,7 +19,7 @@
 <body>
     <!--Navbar section-->
     <header>
-        <div class="bg-div">
+        <!-- <div class="bg-div">
 
             <nav class="navbar" style="padding: 0rem 1.5rem;">
                 <div id="logo"><img class="logo" src="../images/logo.png" alt="splitter" ALIGN=CENTER></div>
@@ -37,7 +37,34 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
+            </nav> -->
+        <nav class="navbar navbar-expand-lg">
+            <button class="navbar-toggler" style="background-color: white; color: rgb(0, 136, 167);" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <div id="logo"><img class="logo" src="../images/logo.png" alt="splitter" ALIGN=CENTER></div>
+                <ul class="navbar-nav ">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" style="padding-right: 50px; padding-top: 10px;">Group List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="padding-top: 10px;">Notifications</a>
+                    </li>
+                    <li class="dropdown nav-link">
+                        <a href="#">
+                            <button class="dropbtn">User <i class="bi bi-person-circle"></i>
+                        </button>
+                            <div class="dropdown-content">
+                                <a id="list-item" href="Profile.html">Profile</a>
+                                <a id="list-item" href="settings.html">Settings</a>
+                                <a id="list-item" href="../../login.html">Log out</a>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </header>
     <!--End of Navbar section-->
 
@@ -52,27 +79,27 @@
             <div id="profile_details">
                 <div class="pd_elements">
                     <label class="pd_style_title" for="Name">Name</label>
-                    <p class="pd_style_field">Enter Full name</p>
+                    <p class="pd_style_field">Your Full name</p>
                     <a class="edit_btn" href="#"><i id = "name_edit" class="fa fa-pencil"></i></a>
                 </div>
                 <div class="pd_elements">
                     <label class="pd_style_title" for="Username">Username</label>
-                    <p class="pd_style_field">Enter Username</p>
+                    <p class="pd_style_field">Your Username</p>
                     <a class="edit_btn" href="#"><i id = "uname_edit" class="fa fa-pencil"></i></a>
                 </div>
                 <div class="pd_elements">
                     <label class="pd_style_title" for="Email">Email address</label>
-                    <p class="pd_style_field">Enter Email Address</p>
+                    <p class="pd_style_field">Your Email Address</p>
                     <a class="edit_btn" href="#"><i id = "email_edit" class="fa fa-pencil"></i></a>
                 </div>
                 <div class="pd_elements">
                     <label class="pd_style_title" for="Ph_no">Phone number</label>
-                    <p class="pd_style_field">Enter Phone Number</p>
+                    <p class="pd_style_field">Your Phone Number</p>
                     <a class="edit_btn" href="#"><i id = "phon_edit"class="fa fa-pencil"></i></a>
                 </div>
                 <div class="pd_elements">
                     <label class="pd_style_title" for="password">Password</label>
-                    <p class="pd_style_field">Enter your password</p>
+                    <p class="pd_style_field">Your password</p>
                     <a class="edit_btn" href="#"><i id = "pswd_edit" class="fa fa-pencil"></i></a>
                 </div>
                 <div class="pd_elements">
