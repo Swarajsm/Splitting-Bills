@@ -1,19 +1,19 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
-
-const passport = require("passport");
-const initializePassport = require('./passport-config')
-initializePassport(passport,
-    email => db.collection.users.find(user => user.email === email),
-    id => users.find(user => user.id === id))
-
-//Mongo DB related stuff
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/Fypro')
+const user = require("./models/User")
+const CryptoJS = require("crypto-js");
+
+var fname, lname, email;
+
+mongoose.connect('mongodb+srv://admin:1234@cluster0.vwzmikm.mongodb.net/?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 var db = mongoose.connection;
-let dbemail = db.collection("user")
+let dbemail = db.collection('user')
 db.on('error', console.log.bind(console, "connection error"));
 db.once('open', function(callback) {
         console.log("connection succeeded");
@@ -24,58 +24,91 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 //Setting up root file for Server at localhost:3000
+
 app.get("/", function(req, res) {
 
     res.sendFile(__dirname + "/login.html");
 })
 
 //Post method for login form at "/" 
-app.post("/", function(req, res) {
-    var email = req.body.email;
-    var pass = req.body.pass;
 
-    var data = {
-        "email": email,
-        "password": pass
+app.post("/", async function(req, res) {
+    var email = req.body.email
+    var password = req.body.pass
+
+    // Encrypt
+    var ciphertext = CryptoJS.AES.encrypt(password, 'secret key 10').toString();
+
+    const formData = {
+        email: email,
+        //pass: password
     }
-    db.collection('user').findOne(data, function(err, collection) {
-        if (err) throw err;
-        return res.redirect('/html/groupList.html');
-    })
-})
+    const fun = await user.find(formData).catch((err) => { console.log(err) })
+    const dbPass = fun[0].password
+
+    // Decrypt
+    var bytes = CryptoJS.AES.decrypt(dbPass, 'secret key 10');
+    var originalText = bytes.toString(CryptoJS.enc.Utf8);
+
+    if (password === originalText) {
+        res.redirect("/html/groupList.html")
+    } else {
+        res.redirect("/")
+    }
+
+
+
+});
 
 //Post Method for Registration Form
 app.post("/Signup.html", async(req, res) => {
     try {
-        var fname = req.body.fname;
-        var lname = req.body.lname;
-        var email = req.body.email;
+        fname = req.body.fname;
+        lname = req.body.lname;
+        email = req.body.email;
         var pass = req.body.pass;
-        const hashedPass = await bcrypt.hash(pass, 10);
 
+        // Encrypt
+        var dbciphertext = CryptoJS.AES.encrypt(pass, 'secret key 10').toString();
+
+        //const hashedPass = await bcrypt.hash(pass, 10);
         var userdata = {
-            _id: Date.now.toString,
-            "name": fname + " " + lname,
-            "email": email,
-            "password": hashedPass
-        }
 
-        db.collection('user').insertOne(userdata, function(err, collection) {
-            if (err) throw err;
-            console.log("Record inserted Successfully");
+                "name": fname + " " + lname,
+                "email": email,
+                "password": dbciphertext
+            }
+            /**
+             db.collection('user').insertOne(userdata,function(err, collection){
+                 if (err) throw err;
+                console.log("Record inserted Successfully");
+                      
+             });
+             */
 
-        });
-        return res.redirect('/');
-    } catch {
-        console.log("failed")
+        await user.create(userdata).catch((err) => { console.log(err) });
+
+        // return res.redirect('/');
+    } catch (err) {
+
+        console.log("failed " + err)
         res.redirect('/Signup.html')
     }
 })
 
-app.post("/groupList.html", (req, res) => {
-    var GName = req.body.groupNm
+app.post("/html/addGroup.html", (req, res) => {
+    var name = req.body.groupname;
+    const Groups = []
+    Groups.add(name);
+    db.collection("groups").insertOne(name, function(err, collection) {
+        if (err) throw err;
+        console.log("Group Entry Succesful")
+    });
+})
 
-});
+app.get("/scripts/GroupList.js", function(req, res) {
+    console.log(Groups);
+})
 
 
 //Setting up our server at port 3000
