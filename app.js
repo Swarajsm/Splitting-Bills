@@ -1,19 +1,18 @@
 const express = require("express");
 const bodyParser =  require("body-parser");
 const bcrypt = require("bcrypt");
-
-const passport = require("passport");
-const initializePassport = require('./passport-config')
-initializePassport( passport,
-    email => db.collection.users.find(user => user.email === email),
-    id => users.find(user => user.id === id))
-
-//Mongo DB related stuff
 const mongoose  = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/Fypro')
+const user = require("./models/User")
+
+var fname, lname, email;
+
+mongoose.connect('mongodb+srv://admin:1234@cluster0.vwzmikm.mongodb.net/?retryWrites=true&w=majority', {
+    useNewUrlParser : true,
+    useUnifiedTopology: true,
+});
 var db = mongoose.connection;
-let dbemail = db.collection("user")
+let dbemail = db.collection('user')
 db.on('error', console.log.bind(console, "connection error"));
 db.once('open', function(callback){
     console.log("connection succeeded");
@@ -32,46 +31,74 @@ app.get("/", function(req, res){
 
 //Post method for login form at "/" 
 
-app.post("/",function(req, res){
-    var email = req.body.email;
-    var pass = req.body.pass;
-
-    var data = {
-        "email": email,
-        "password": pass
+app.post("/",async function(req, res){
+    var email = req.body.email
+    var password = req.body.pass
+    formHashedPass = await bcrypt.hash(password, 10);
+    const formData= {
+        email: email,
+        //pass: password
     }
-    db.collection('user').findOne(data, function(err, collection){
-        if (err) throw err;
-        return res.redirect('/html/groupList.html');
-    })
-})
+    
+    const fun = await user.find(formData).catch((err)=>{console.log(err)})
+    console.log(fun)
+    const dbPass = fun[0].password
+    console.log(dbPass)
+    console.log(formHashedPass)
+    if(formHashedPass === dbPass){
+        res.redirect("/html/groupList.html")
+    }else{
+        res.redirect("/")
+    }
+        
+
+});
 
 //Post Method for Registration Form
 app.post("/Signup.html",async (req, res)=>{
     try{
-    var fname = req.body.fname;
-    var lname = req.body.lname;
-    var email = req.body.email;
+    fname = req.body.fname;
+    lname = req.body.lname;
+    email = req.body.email;
     var pass = req.body.pass;
     const hashedPass = await bcrypt.hash(pass, 10);
     var userdata ={
-        _id: Date.now.toString,
+        
         "name" : fname +" "+ lname,
         "email": email,
         "password": hashedPass
     }
-
-    db.collection('user').insertOne(userdata,function(err, collection){
-        if (err) throw err;
+    /**
+     db.collection('user').insertOne(userdata,function(err, collection){
+         if (err) throw err;
         console.log("Record inserted Successfully");
               
-    });
+     });
+     */
+     
+    await user.create(userdata).catch((err)=>{console.log(err)});
+    
     return res.redirect('/');
     }
-    catch{
-        console.log("failed")
+    catch(err){
+        
+        console.log("failed "+ err)
         res.redirect('/Signup.html')
     }
+})
+
+app.post("/html/addGroup.html",(req, res)=>{
+    var name = req.body.groupname;
+    const Groups = []
+    Groups.add(name);
+    db.collection("groups").insertOne(name,function(err, collection){
+        if(err) throw err;
+        console.log("Group Entry Succesful")
+    });
+})
+
+app.get("/scripts/GroupList.js",function(req, res){
+    console.log(Groups);
 })
 
 
