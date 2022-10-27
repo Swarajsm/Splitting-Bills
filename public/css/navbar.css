@@ -12,9 +12,6 @@ i {
     margin-right: 10px;
 }
 
-
-/*----------bootstrap-navbar-css------------*/
-
 .navbar-logo {
     padding: 15px;
     color: #fff;
@@ -192,68 +189,4 @@ i {
         bottom: -25px;
         left: -25px;
     }
-}
-
-
-/* navbar css ended */
-
-body {
-    margin: 0px;
-}
-
-.fab-container {
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
-    cursor: pointer;
-}
-
-.iconbutton {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    box-shadow: 10px 10px 5px #aaaaaa;
-}
-
-.button {
-    width: 60px;
-    height: 60px;
-    background: rgb(0, 136, 167);
-}
-
-.iconbutton i {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: white;
-}
-
-.card {
-    margin-left: 25%;
-    height: 9rem;
-}
-
-.btn-primary {
-    height: 30px;
-}
-
-.Group-List {
-    list-style: none;
-}
-
-#details-btn {
-    background-color: rgb(0, 136, 167);
-}
-
-.input-group {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex-align: stretch;
-    align-items: stretch;
-    width: 100%;
-    justify-content: center;
 }

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Navbar</title>
+    <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-custom navbar-mainbg">
+        <img class="navbar-brand navbar-logo" src="../images/logo.png" width="100" height="100">
+
+        <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-bars text-white"></i>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <div class="hori-selector">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-people"></i> Group List</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="bi bi-bell"></i> Notification</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-person-circle"></i> Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-gear"></i> Settings</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#"><img src="https://cdn-icons-png.flaticon.com/128/3329/3329438.png" width="20" height="20"> Log out</a>
+                </li> -->
+            </ul>
+        </div>
+    </nav>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/navbar.js"></script>
+    <script>
+        // ---------Responsive-navbar-active-animation-----------
+        // function test() {
+        //     var tabsNewAnim = $('#navbarSupportedContent');
+        //     var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+        //     var activeItemNewAnim = tabsNewAnim.find('.active');
+        //     var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+        //     var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+        //     var itemPosNewAnimTop = activeItemNewAnim.position();
+        //     var itemPosNewAnimLeft = activeItemNewAnim.position();
+        //     $(".hori-selector").css({
+        //         "top": itemPosNewAnimTop.top + "px",
+        //         "left": itemPosNewAnimLeft.left + "px",
+        //         "height": activeWidthNewAnimHeight + "px",
+        //         "width": activeWidthNewAnimWidth + "px"
+        //     });
+        //     $("#navbarSupportedContent").on("click", "li", function(e) {
+        //         $('#navbarSupportedContent ul li').removeClass("active");
+        //         $(this).addClass('active');
+        //         var activeWidthNewAnimHeight = $(this).innerHeight();
+        //         var activeWidthNewAnimWidth = $(this).innerWidth();
+        //         var itemPosNewAnimTop = $(this).position();
+        //         var itemPosNewAnimLeft = $(this).position();
+        //         $(".hori-selector").css({
+        //             "top": itemPosNewAnimTop.top + "px",
+        //             "left": itemPosNewAnimLeft.left + "px",
+        //             "height": activeWidthNewAnimHeight + "px",
+        //             "width": activeWidthNewAnimWidth + "px"
+        //         });
+        //     });
+        // }
+        // $(document).ready(function() {
+        //     setTimeout(function() {
+        //         test();
+        //     });
+        // });
+        // $(window).on('resize', function() {
+        //     setTimeout(function() {
+        //         test();
+        //     }, 500);
+        // });
+        // $(".navbar-toggler").click(function() {
+        //     $(".navbar-collapse").slideToggle(30);
+        //     setTimeout(function() {
+        //         test();
+        //     });
+        // });
+
+
+
+        // // --------------add active class-on another-page move----------
+        // jQuery(document).ready(function($) {
+        //     // Get current path and find target link
+        //     var path = window.location.pathname.split("/").pop();
+
+        //     // Account for home page with empty path
+        //     if (path == '') {
+        //         path = 'index.html';
+        //     }
+
+        //     var target = $('#navbarSupportedContent ul li a[href="' + path + '"]');
+        //     // Add active class to target link
+        //     target.parent().addClass('active');
+        // });
+
+
+
+
+        // Add active class on another page linked
+        // ==========================================
+        // $(window).on('load',function () {
+        //     var current = location.pathname;
+        //     console.log(current);
+        //     $('#navbarSupportedContent ul li a').each(function(){
+        //         var $this = $(this);
+        //         // if the current path is like this link, make it active
+        //         if($this.attr('href').indexOf(current) !== -1){
+        //             $this.parent().addClass('active');
+        //             $this.parents('.menu-submenu').addClass('show-dropdown');
+        //             $this.parents('.menu-submenu').parent().addClass('active');
+        //         }else{
+        //             $this.parent().removeClass('active');
+        //         }
+        //     })
+        // });
+    </script>
+</body>
+
+</html>

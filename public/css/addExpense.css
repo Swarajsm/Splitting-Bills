@@ -1,64 +1,201 @@
-.navbar {
-    display: flex;
-    align-items: center;
-    position: relative;
-    top: 0px;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body {
+    font-family: 'Roboto', sans-serif;
 }
 
-.navbar::before {
-    content: "";
+* {
+    margin: 0;
+    padding: 0;
+}
+
+i {
+    margin-right: 10px;
+}
+
+
+/*----------bootstrap-navbar-css------------*/
+
+.navbar-logo {
+    padding: 15px;
+    color: #fff;
+}
+
+.navbar-mainbg {
     background-color: rgb(0, 136, 167);
+    padding: 0px;
+}
+
+#navbarSupportedContent {
+    overflow: hidden;
+    position: relative;
+}
+
+#navbarSupportedContent ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+#navbarSupportedContent ul li a i {
+    margin-right: 10px;
+}
+
+#navbarSupportedContent li {
+    list-style-type: none;
+    float: left;
+}
+
+#navbarSupportedContent ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    display: block;
+    padding: 20px 20px;
+    transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+}
+
+#navbarSupportedContent>ul>li.active>a {
+    color: rgb(0, 136, 167);
+    background-color: transparent;
+    transition: all 0.7s;
+}
+
+#navbarSupportedContent a:not(:only-child):after {
+    content: "f105";
     position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 14px;
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+    transition: 0.5s;
+}
+
+#navbarSupportedContent .active>a:not(:only-child):after {
+    transform: rotate(90deg);
+}
+
+.hori-selector {
+    display: inline-block;
+    position: absolute;
+    height: 100%;
     top: 0px;
     left: 0px;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
+    transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background-color: #fff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: 10px;
 }
 
-.navbar ul {
-    display: flex;
+.hori-selector .right,
+.hori-selector .left {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    bottom: 10px;
 }
 
-.navbar ul li {
-    list-style: none;
-    font-size: 1.5rem;
+.hori-selector .right {
+    right: -25px;
 }
 
-.navbar ul li a {
-    color: white;
-    display: block;
-    padding: 3px 50px;
-    text-decoration: none;
-    font-size: 28px;
+.hori-selector .left {
+    left: -25px;
 }
 
-.navbar ul li a:hover {
-    color: rgb(193, 236, 245);
+.hori-selector .right:before,
+.hori-selector .left:before {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(0, 136, 167);
 }
 
-#logo {
-    margin: 8px 13px;
-    margin-top: 4px;
-    margin-bottom: 4px;
+.hori-selector .right:before {
+    bottom: 0;
+    right: -25px;
 }
 
-#logo img {
-    height: 100px;
-    margin: 0px 1px;
+.hori-selector .left:before {
+    bottom: 0;
+    left: -25px;
 }
 
-@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
-    /* For portrait layouts only */
-    .navbar li {
-        margin: 5px;
+.nav-item {
+    margin-right: 20px;
+    font-size: 60px;
+}
+
+.navbar-toggler {
+    padding: 0.25rem 3rem;
+    font-size: 3.5rem;
+}
+
+@media(min-width: 992px) {
+    .navbar-expand-custom {
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+    .navbar-expand-custom .navbar-nav {
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+    .navbar-expand-custom .navbar-toggler {
+        display: none;
+    }
+    .navbar-expand-custom .navbar-collapse {
+        display: -ms-flexbox!important;
+        display: flex!important;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
     }
 }
 
-.navbar li a:hover {
-    box-shadow: 10px 10px 5px rgb(115, 209, 228);
-    color: rgb(193, 236, 245);
+@media (max-width: 991px) {
+    #navbarSupportedContent ul li a {
+        padding: 12px 30px;
+    }
+    .hori-selector {
+        margin-top: 0px;
+        margin-left: 10px;
+        border-radius: 0;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+    .hori-selector .left,
+    .hori-selector .right {
+        right: 10px;
+    }
+    .hori-selector .left {
+        top: -25px;
+        left: auto;
+    }
+    .hori-selector .right {
+        bottom: -25px;
+    }
+    .hori-selector .left:before {
+        left: -25px;
+        top: -25px;
+    }
+    .hori-selector .right:before {
+        bottom: -25px;
+        left: -25px;
+    }
 }
+
+
+/* navbar css ended */
 
 body {
     margin: 0px;
@@ -151,85 +288,95 @@ body {
 }
 
 .btn-group button {
-  background-color: rgb(0, 136, 167);
-  border: 1px solid rgb(0, 136, 167);
-  color: white;
-  padding: 10px 30px;
-  cursor: pointer;
-  float: left;
-  margin-right: 2rem;
-  margin-left: 30rem;
-  font-size: 25px;
+    background-color: rgb(0, 136, 167);
+    border: 1px solid rgb(0, 136, 167);
+    color: white;
+    padding: 10px 30px;
+    cursor: pointer;
+    float: left;
+    margin-right: 2rem;
+    margin-left: 30rem;
+    font-size: 25px;
 }
 
 .btn-group button:not(:last-child) {
-  border-right: none;
+    border-right: none;
 }
+
 
 /* Clear floats (clearfix hack) */
+
 .btn-group:after {
-  content: "";
-  clear: both;
-  display: table;
+    content: "";
+    clear: both;
+    display: table;
 }
+
 
 /* Add a background color on hover */
+
 .btn-group button:hover {
-  background-color: black;;
+    background-color: black;
+    ;
 }
 
-h1{
-  padding-left: 38rem;
-  color: white;
-  background-color: rgb(0, 136, 167);
+h1 {
+    padding-left: 38rem;
+    color: white;
+    background-color: rgb(0, 136, 167);
 }
 
-h2{
-  text-align: center;
-  text-decoration: underline;
+h2 {
+    text-align: center;
+    text-decoration: underline;
 }
 
-.addExpense{
-  border: 1px solid black;
-  border-radius: 4px;
-  padding: 5px;
-  width: 250px;
-  margin-left: 20rem;
+.addExpense {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 5px;
+    width: 250px;
+    margin-left: 20rem;
 }
 
-.date{
-  margin-left: 3rem;
-  height: 3rem;
-  width: 10rem;
-}
-.totalbill{
-  margin-left: 1rem;
-  height: 3rem;
-  width: 21rem;
-}
-.billname{
-  margin-left: 3rem;height: 3rem;
-  width: 32rem;
+.date {
+    margin-left: 3rem;
+    height: 3rem;
+    width: 10rem;
 }
 
-.people{
-  margin-left: 3rem;height: 3rem;
-  width: 32rem;
+.totalbill {
+    margin-left: 1rem;
+    height: 3rem;
+    width: 21rem;
 }
 
-.split{
-  margin-left: 3rem;
-  height: 3rem;
-  width: 32rem;
+.billname {
+    margin-left: 3rem;
+    height: 3rem;
+    width: 32rem;
 }
 
-.button{
-  margin-left: 47rem;
-  height: 3rem;
-  width: 15rem;
-  color: white;
-  text-align: center;
+.people {
+    margin-left: 3rem;
+    height: 3rem;
+    width: 32rem;
 }
+
+.split {
+    margin-left: 3rem;
+    height: 3rem;
+    width: 32rem;
+}
+
+.button {
+    margin-left: 47rem;
+    height: 3rem;
+    width: 15rem;
+    color: white;
+    text-align: center;
+}
+
 .button:hover {
-  background-color: black;
+    background-color: black;
 }
