@@ -28,64 +28,72 @@ app.get("/", function(req, res){
     
     res.sendFile(__dirname + "/login.html");
 })
-
 //Post method for login form at "/" 
 
-app.post("/",async function(req, res){
+app.post("/", async function(req, res) {
     var email = req.body.email
     var password = req.body.pass
-    formHashedPass = await bcrypt.hash(password, 10);
-    const formData= {
+
+    // Encrypt
+    var ciphertext = CryptoJS.AES.encrypt(password, 'secret key 10').toString();
+
+    const formData = {
         email: email,
         //pass: password
     }
-    
-    const fun = await user.find(formData).catch((err)=>{console.log(err)})
-    console.log(fun)
+    const fun = await user.find(formData).catch((err) => { console.log(err) })
     const dbPass = fun[0].password
-    console.log(dbPass)
-    console.log(formHashedPass)
-    if(formHashedPass === dbPass){
+
+    // Decrypt
+    var bytes = CryptoJS.AES.decrypt(dbPass, 'secret key 10');
+    var originalText = bytes.toString(CryptoJS.enc.Utf8);
+
+    if (password === originalText) {
         res.redirect("/html/groupList.html")
-    }else{
+    } else {
         res.redirect("/")
     }
-        
+
+
 
 });
 
 //Post Method for Registration Form
-app.post("/Signup.html",async (req, res)=>{
-    try{
-    fname = req.body.fname;
-    lname = req.body.lname;
-    email = req.body.email;
-    var pass = req.body.pass;
-    const hashedPass = await bcrypt.hash(pass, 10);
-    var userdata ={
-        
-        "name" : fname +" "+ lname,
-        "email": email,
-        "password": hashedPass
-    }
-    /**
-     db.collection('user').insertOne(userdata,function(err, collection){
-         if (err) throw err;
-        console.log("Record inserted Successfully");
-              
-     });
-     */
-     
-    await user.create(userdata).catch((err)=>{console.log(err)});
-    
-    return res.redirect('/');
-    }
-    catch(err){
-        
-        console.log("failed "+ err)
+app.post("/Signup.html", async(req, res) => {
+    try {
+        fname = req.body.fname;
+        lname = req.body.lname;
+        email = req.body.email;
+        var pass = req.body.pass;
+
+        // Encrypt
+        var dbciphertext = CryptoJS.AES.encrypt(pass, 'secret key 10').toString();
+
+        //const hashedPass = await bcrypt.hash(pass, 10);
+        var userdata = {
+
+                "name": fname + " " + lname,
+                "email": email,
+                "password": dbciphertext
+            }
+            /**
+             db.collection('user').insertOne(userdata,function(err, collection){
+                 if (err) throw err;
+                console.log("Record inserted Successfully");
+                      
+             });
+             */
+
+        await user.create(userdata).catch((err) => { console.log(err) });
+
+        // return res.redirect('/');
+    } catch (err) {
+
+        console.log("failed " + err)
         res.redirect('/Signup.html')
     }
 })
+
 
 app.post("/html/addGroup.html",(req, res)=>{
     var name = req.body.groupname;
