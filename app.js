@@ -34,7 +34,7 @@ app.get("/", function(req, res){
 app.post("/",async function(req, res){
     var email = req.body.email
     var password = req.body.pass
-    formHashedPass = await bcrypt.hash(password, 10);
+    var formHashedPass = await bcrypt.hash(password, 10);
     const formData= {
         email: email,
         //pass: password
