@@ -3,6 +3,13 @@ const addButton = document.querySelector(".add-group-btn")
 
 const groupList = document.querySelector(".Group-List")
 addButton.addEventListener("click", addGroup);
+const Groups = [];
+let added = groupName.value;
+Groups.push(added)
+console.log(Groups);
+
+
+
 
 function addGroup(event){
     
@@ -20,9 +27,7 @@ function addGroup(event){
     
     const name = document.createElement("h5")
     name.innerText= groupName.value;
-
     cardBody.appendChild(name);
-    
     const x = document.createElement("A");
     const t = document.createTextNode("Details");
     x.setAttribute("href", "#");
@@ -30,24 +35,13 @@ function addGroup(event){
     cardBody.appendChild(x);
     x.classList.add("btn")
     x.classList.add("btn-primary")
-
-
+    x.classList.add("details-btn")
     groupList.appendChild(newGroup)
 
-
-    /**
-     * const card = newGroup.createElement("div")
-    card.classList.add("card")
-    card.classList.add("w-50")
-    card.classList.add("h-25")
-
-    const cardBody = newGroup.createElement("div")
-    cardBody.classList.add("card-body")
-
-    const grpName = cardBody.createElement("h5")
-    */
-    
-    
-
+    post('/GroupList.js', function(req, res) {// success callback
+			var name = groupName;
+            Groups =[];
+            Groups.push(name)	
+	});
 
 }
