@@ -1,33 +1,36 @@
 const express = require("express");
-const bodyParser =  require("body-parser");
+const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
-const mongoose  = require('mongoose');
+const mongoose = require('mongoose');
 
 const user = require("./models/User")
+const CryptoJS = require("crypto-js");
+const { response } = require("express");
 
-var fname, lname, email;
+var fname, lname, email, name;
 
 mongoose.connect('mongodb+srv://admin:1234@cluster0.vwzmikm.mongodb.net/?retryWrites=true&w=majority', {
-    useNewUrlParser : true,
+    useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 var db = mongoose.connection;
 let dbemail = db.collection('user')
 db.on('error', console.log.bind(console, "connection error"));
-db.once('open', function(callback){
-    console.log("connection succeeded");
-})
-// express
+db.once('open', function(callback) {
+        console.log("connection succeeded");
+    })
+    // express
 const app = express();
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 //Setting up root file for Server at localhost:3000
 
-app.get("/", function(req, res){
-    
+app.get("/", function(req, res) {
+
     res.sendFile(__dirname + "/login.html");
 })
+
 //Post method for login form at "/" 
 
 app.post("/", async function(req, res) {
@@ -50,11 +53,11 @@ app.post("/", async function(req, res) {
 
     if (password === originalText) {
         res.redirect("/html/groupList.html")
+        var isLoggedIn = true;
+
     } else {
         res.redirect("/")
     }
-
-
 
 });
 
@@ -94,23 +97,35 @@ app.post("/Signup.html", async(req, res) => {
     }
 })
 
-
-app.post("/html/addGroup.html",(req, res)=>{
+app.post("/html/addGroup.html", (req, res) => {
     var name = req.body.groupname;
     const Groups = []
     Groups.add(name);
-    db.collection("groups").insertOne(name,function(err, collection){
-        if(err) throw err;
+    db.collection("groups").insertOne(name, function(err, collection) {
+        if (err) throw err;
         console.log("Group Entry Succesful")
     });
 })
 
-app.get("/scripts/GroupList.js",function(req, res){
+app.get("/scripts/GroupList.js", function(req, res) {
     console.log(Groups);
 })
 
 
+//Post method for Profile page
+app.post("/html/Profile.html", async(req, res) => {
+    const fun = await user.find(formData).catch((err) => { console.log(err) })
+    response.on("data", function(data) {
+        const dbData = JSON.parse(data);
+        name = dbData.fun[0].fname + " " + fun[0].lname;
+        email = dbData.fun[0].email;
+        res.write("<p> name < /p>");
+    })
+
+})
+
+
 //Setting up our server at port 3000
-app.listen(3000, function(req, res){
+app.listen(3000, function(req, res) {
     console.log("Server Started on Port 3000");
 })

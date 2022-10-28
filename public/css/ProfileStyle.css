@@ -1,8 +1,204 @@
-*{
+* {
     margin: 0px;
     border: 0px;
 }
-:root{
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+i {
+    margin-right: 10px;
+}
+
+.navbar-logo {
+    padding: 15px;
+    color: #fff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.navbar-mainbg {
+    background-color: rgb(0, 136, 167);
+    padding: 0px;
+}
+
+#navbarSupportedContent {
+    overflow: hidden;
+    position: relative;
+}
+
+#navbarSupportedContent ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+#navbarSupportedContent ul li a i {
+    margin-right: 10px;
+}
+
+#navbarSupportedContent li {
+    list-style-type: none;
+    float: left;
+}
+
+#navbarSupportedContent ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    display: block;
+    padding: 20px 20px;
+    transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+}
+
+#navbarSupportedContent>ul>li.active>a {
+    color: rgb(0, 136, 167);
+    background-color: transparent;
+    transition: all 0.7s;
+}
+
+#navbarSupportedContent a:not(:only-child):after {
+    content: "f105";
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 14px;
+    font-family: "Font Awesome 5 Free";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
+    transition: 0.5s;
+}
+
+#navbarSupportedContent .active>a:not(:only-child):after {
+    transform: rotate(90deg);
+}
+
+.hori-selector {
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background-color: #fff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: 10px;
+}
+
+.hori-selector .right,
+.hori-selector .left {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    bottom: 10px;
+}
+
+.hori-selector .right {
+    right: -25px;
+}
+
+.hori-selector .left {
+    left: -25px;
+}
+
+.hori-selector .right:before,
+.hori-selector .left:before {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(0, 136, 167);
+}
+
+.hori-selector .right:before {
+    bottom: 0;
+    right: -25px;
+}
+
+.hori-selector .left:before {
+    bottom: 0;
+    left: -25px;
+}
+
+.nav-item {
+    margin-right: 20px;
+    font-size: 60px;
+}
+
+.navbar-toggler {
+    padding: 0.25rem 3rem;
+    font-size: 3.5rem;
+}
+
+@media(min-width: 992px) {
+    .navbar-expand-custom {
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+    .navbar-expand-custom .navbar-nav {
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+    .navbar-expand-custom .navbar-toggler {
+        display: none;
+    }
+    .navbar-expand-custom .navbar-collapse {
+        display: -ms-flexbox!important;
+        display: flex!important;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    }
+}
+
+@media (max-width: 991px) {
+    #navbarSupportedContent ul li a {
+        padding: 12px 30px;
+    }
+    .hori-selector {
+        margin-top: 0px;
+        margin-left: 10px;
+        border-radius: 0;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+    .hori-selector .left,
+    .hori-selector .right {
+        right: 10px;
+    }
+    .hori-selector .left {
+        top: -25px;
+        left: auto;
+    }
+    .hori-selector .right {
+        bottom: -25px;
+    }
+    .hori-selector .left:before {
+        left: -25px;
+        top: -25px;
+    }
+    .hori-selector .right:before {
+        bottom: -25px;
+        left: -25px;
+    }
+}
+
+:root {
     --Primary: rgb(0, 136, 167);
     --accent: rgb(193, 236, 245);
     --Grey900: #1D1B1B;
@@ -10,16 +206,17 @@
     --Grey500: #7B7B7B;
     --GreyWhite: #F3F3F3;
 }
-.edit_btn i{
+
+.edit_btn i {
     font-size: 25px;
     color: var(--Grey700);
 }
 
-.edit_btn i:hover{
+.edit_btn i:hover {
     color: var(--Primary);
 }
 
-#profile_container{
+#profile_container {
     /* border: 2px solid red; */
     width: 95%;
     display: flex;
@@ -29,16 +226,18 @@
     left: 41px;
 }
 
-#profile_picture{
+#profile_picture {
     /* border: 2px solid black; */
     height: 200px;
     width: 200px;
 }
 
-#profile_picture img{
+#profile_picture img {
     height: 155px;
     width: 155px;
 }
+
+
 /*#profile_picture i{
     font-size: 115px;
     position: absolute;
@@ -55,7 +254,7 @@
     border-radius: 23px;
 }
 
-#profile_picture #edit_pic i{
+#profile_picture #edit_pic i {
     /* border: 2px solid green; */
     border-radius: 3px;
     font-size: 20px;
@@ -65,16 +264,17 @@
     left: 14px;
 }
 
+
 /* #profile_picture #edit_pic:hover{
     padding: 22px;
 } */
 
-#profile_picture #edit_pic i:hover{
+#profile_picture #edit_pic i:hover {
     /* color: var(--accent); */
     font-size: 22px;
 }
 
-#profile_details{
+#profile_details {
     /* border: 2px solid blue; */
     width: 597px;
     position: absolute;
@@ -82,22 +282,23 @@
     top: 30px;
 }
 
-#profile_details .pd_elements{
+#profile_details .pd_elements {
     /* border: 2px solid orangered;  */
     margin-bottom: 30px;
-
 }
 
-.pd_elements .pd_style_title{
+.pd_elements .pd_style_title {
     font-weight: bold;
     font-size: 20px;
     color: var(--Grey900);
 }
-.pd_elements .pd_style_field{
+
+.pd_elements .pd_style_field {
     color: var(--Grey700);
     border-bottom: 2px solid var(--Grey700);
     width: 590px;
 }
+
 
 /*#profile_details .pd_elements .edit_btn{
     /* border: 2px solid green; 
@@ -106,42 +307,42 @@
     top: 34px;
 }*/
 
-.pd_elements a #name_edit{
+.pd_elements a #name_edit {
     /* border: 2px solid black; */
     position: absolute;
     left: 563px;
     top: 35px;
 }
 
-.pd_elements a #uname_edit{
+.pd_elements a #uname_edit {
     /* border: 2px solid black; */
     position: absolute;
     left: 563px;
     top: 130px;
 }
 
-.pd_elements a #email_edit{
+.pd_elements a #email_edit {
     /* border: 2px solid black; */
     position: absolute;
     left: 563px;
     top: 224px;
 }
 
-.pd_elements a #phon_edit{
+.pd_elements a #phon_edit {
     /* border: 2px solid black; */
     position: absolute;
     left: 563px;
     top: 318px;
 }
 
-.pd_elements a #pswd_edit{
+.pd_elements a #pswd_edit {
     /* border: 2px solid black; */
     position: absolute;
     left: 563px;
     top: 412px;
 }
 
-.pd_elements #wb_display{
+.pd_elements #wb_display {
     border: 2px solid var(--Grey700);
     border-radius: 4px;
     margin-left: 16px;
