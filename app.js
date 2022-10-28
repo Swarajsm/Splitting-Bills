@@ -5,8 +5,9 @@ const mongoose = require('mongoose');
 
 const user = require("./models/User")
 const CryptoJS = require("crypto-js");
+const { response } = require("express");
 
-var fname, lname, email;
+var fname, lname, email, name;
 
 mongoose.connect('mongodb+srv://admin:1234@cluster0.vwzmikm.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -52,11 +53,11 @@ app.post("/", async function(req, res) {
 
     if (password === originalText) {
         res.redirect("/html/groupList.html")
+        var isLoggedIn = true;
+
     } else {
         res.redirect("/")
     }
-
-
 
 });
 
@@ -108,6 +109,19 @@ app.post("/html/addGroup.html", (req, res) => {
 
 app.get("/scripts/GroupList.js", function(req, res) {
     console.log(Groups);
+})
+
+
+//Post method for Profile page
+app.post("/html/Profile.html", async(req, res) => {
+    const fun = await user.find(formData).catch((err) => { console.log(err) })
+    response.on("data", function(data) {
+        const dbData = JSON.parse(data);
+        name = dbData.fun[0].fname + " " + fun[0].lname;
+        email = dbData.fun[0].email;
+        res.write("<p> name < /p>");
+    })
+
 })
 
 
