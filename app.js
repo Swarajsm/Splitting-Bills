@@ -17,9 +17,10 @@ var db = mongoose.connection;
 let dbemail = db.collection('user')
 db.on('error', console.log.bind(console, "connection error"));
 db.once('open', function(callback) {
-        console.log("connection succeeded");
-    })
-    // express
+    console.log("connection succeeded");
+})
+
+// express
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -111,18 +112,6 @@ app.get("/scripts/GroupList.js", function(req, res) {
     console.log(Groups);
 })
 
-
-//Post method for Profile page
-app.post("/html/Profile.html", async(req, res) => {
-    const fun = await user.find(formData).catch((err) => { console.log(err) })
-    response.on("data", function(data) {
-        const dbData = JSON.parse(data);
-        name = dbData.fun[0].fname + " " + fun[0].lname;
-        email = dbData.fun[0].email;
-        res.write("<p> name < /p>");
-    })
-
-})
 
 
 //Setting up our server at port 3000
