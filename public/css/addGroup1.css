@@ -1,0 +1,148 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+#container{
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    /* top: 32px; */
+    left: 30px;
+    width: 1112px;
+}
+
+#SearchM{
+    border-right: 3px solid #0088a7;
+    height: 637px;
+    width: 414px;
+}
+
+#SearchBar{
+    /* border: 2px solid red; */
+    position: absolute;
+    top: 26px;
+}
+
+form #searchBtn{
+    width: 55px;
+    padding: 8px 15px 8px 18px;
+    position: relative;
+    left: -5px;
+    background-color: #0088a7;
+    color: white;
+    font-size: 17px;
+    text-align: center;
+    border-top-right-radius:4px; 
+    border-bottom-right-radius:4px; 
+}
+
+#SearchBar form #search_ip{
+    padding: 9px 122px 9px 15px;
+    border-top-left-radius:4px; 
+    border-bottom-left-radius:4px; 
+}
+
+#SearchBar #addBtn{
+    /* border: 2px solid blue; */
+    position: absolute;
+    left: 145px;
+}
+
+#addBtn button{
+    margin-top: 13px;
+    padding-left: 21px;
+    padding-right: 21px;
+    background-color: #0088a7;
+}
+
+#SearchBar #Contd{
+    position: absolute;
+    top: 103px;
+    left: 137px;
+    display: none;
+}
+
+#SearchBar #Cancel{
+    position: absolute;
+    top: 103px;
+    left: 137px;
+    display: none;
+}
+
+#grpNamePic #namePicBox{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 100px;
+}
+
+#grpIcon img{
+    /* border: 2px solid orange; */
+    height: 250px; 
+    width: 250px; 
+    display: block; 
+    margin: auto;
+} 
+
+.rounded-circle {
+    border-radius: 50%!important;
+    border: 3px solid black;
+}
+
+#grpIcon #edit_pic {
+    /* border: 2px solid green; */ 
+    background-color: rgb(0, 136, 167);
+    position: absolute;
+    top: 175px;
+    left: 202px;
+    padding: 23px;
+    border-radius: 23px;
+}
+
+#grpIcon #edit_pic i {
+    /* border: 2px solid green; */ 
+    border-radius: 3px;
+    font-size: 20px;
+    color: #F3F3F3;
+    position: absolute;
+    top: 12px;
+    left: 15px;
+}
+
+#grpIcon #edit_pic i:hover {
+    /* color: var(--accent); */
+    font-size: 22px;
+}
+
+#grpName_Create_Cancel{
+    /* border: 2px solid black; */
+    position:relative;
+    top: 23px;
+}
+
+#grpName_Create_Cancel form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 132px;
+    position: relative;
+}
+
+#grpName_Create_Cancel form input {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 14px;
+}
+
+#grpName_Create_Cancel form button{
+    background-color: #0088a7;
+} 
+
+#grpName_Create_Cancel form button:hover{
+    background-color: #00758f;
+}
+

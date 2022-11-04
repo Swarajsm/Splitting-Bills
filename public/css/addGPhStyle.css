@@ -1,0 +1,96 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+#grpNamePic #namePicBox {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 100px;
+    width: 282px;
+    margin: 0px auto;
+}
+
+#grpIcon{
+    /*border: 2px solid orange; */
+    position: relative;
+    top: -66px;
+} 
+
+#grpIcon img{
+    height: 220px; 
+    width: 220px; 
+    display: block; 
+    margin: auto;
+}
+
+.rounded-circle {
+    border-radius: 50%!important;
+    border: 3px solid black;
+}
+
+#grpIcon #edit_pic {
+    /* border: 2px solid green; */ 
+    background-color: rgb(0, 136, 167);
+    position: absolute;
+    top: 140px;
+    left: 209px;
+    padding: 23px;
+    border-radius: 23px;
+}
+
+#grpIcon #edit_pic i {
+    /* border: 2px solid green; */ 
+    border-radius: 3px;
+    font-size: 20px;
+    color: #F3F3F3;
+    position: absolute;
+    top: 12px;
+    left: 15px;
+}
+
+#grpIcon #edit_pic i:hover {
+    /* color: var(--accent); */
+    font-size: 22px;
+}
+
+#grpName_Create_Cancel{
+    /* border: 2px solid black; */
+    position:relative;
+    top: -45px;
+}
+
+#grpName_Create_Cancel form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 132px;
+    position: relative;
+}
+
+#grpName_Create_Cancel form input {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 14px;
+}
+
+#grpName_Create_Cancel form button{
+    background-color: #0088a7;
+} 
+
+#grpName_Create_Cancel form button:hover{
+    background-color: #00758f;
+}
+
+#grpName_Create_Cancel #create_grp{
+    padding-left: 92px;
+    padding-right: 92px;
+}
+
+#grpName_Create_Cancel #cancel_create{
+    padding-left: 116px;
+    padding-right: 116px;
+}
