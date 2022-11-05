@@ -20,13 +20,15 @@ mongoose.connect(
   }
 );
 var db = mongoose.connection;
+
+
 let dbemail = db.collection("user");
 db.on("error", console.log.bind(console, "connection error"));
 db.once("open", function (callback) {
   console.log("connection succeeded");
 });
 // express
-///////
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -110,17 +112,25 @@ app.post("/html/groupList.html", async(req, res)=>{
     console.log(err);
   });
 
+
+app.post("/html/addGroup.html", (req, res) => {
+    var name = req.body.groupname;
+    const Groups = []
+    Groups.add(name);
+    db.collection("groups").insertOne(name, function(err, collection) {
+        if (err) throw err;
+        console.log("Group Entry Successful")
+    });
 })
 
-//Post method for Profile page
-app.post("/html/Profile.html", async(req, res) => {
-    
-    
 
-})
 
 
 //Setting up our server at port 3000
-app.listen(3000, function (req, res) {
-  console.log("Server Started on Port 3000");
-});
+app.listen(3000, function(req, res) {
+    console.log("Server Started on Port 3000");
+})
+
+})
+
+
