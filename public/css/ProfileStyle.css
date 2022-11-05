@@ -352,3 +352,16 @@ i {
     text-align: center;
     color: var(--Grey900);
 }
+
+#profile_details #logoutBtn{
+    font-size: 18px;
+    background-color:rgb(0, 136, 167);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 4px;
+}
+
+#profile_details #logoutBtn:hover{
+    background-color:#00758f;
+}
+
