@@ -104,7 +104,7 @@ app.post("/html/addGroup.html", (req, res) => {
     Groups.add(name);
     db.collection("groups").insertOne(name, function(err, collection) {
         if (err) throw err;
-        console.log("Group Entry Succesful")
+        console.log("Group Entry Successful")
     });
 })
 
