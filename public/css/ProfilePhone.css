@@ -1,0 +1,57 @@
+
+#profile_container {
+    /* border: 2px solid red; */
+    flex-wrap: wrap;
+    margin: 0px auto;
+    width: 344px;
+    left: 0px;
+    top: 50px;
+}
+
+#profile_picture {
+    /* border: 2px solid black;  */
+    margin: 0px auto;
+    height: 201px;
+    width: 240px;
+}
+
+#profile_details {
+    /* border: 2px solid blue;  */
+    margin: 0px auto;
+    width: 344px;
+    left: 0px;
+}
+
+.pd_elements .pd_style_field{
+    width: 344px;
+    font-size: 18px;
+} 
+
+.pd_elements a #name_edit{
+    left: 312px;
+    top: 38px;
+}
+
+.pd_elements a #email_edit{
+    left: 312px;
+    top: 140px;
+} 
+
+#profile_picture #edit_pic{
+    left: 232px;
+    top: 122px;
+}
+
+#profile_picture img {
+    height: 194px;
+    width: 194px;
+    margin-left: 22px;
+}
+
+.pd_elements .pd_style_title {
+    font-size: 23px;
+}
+
+.pd_elements #wb_display {
+    font-size: 20px;
+}
