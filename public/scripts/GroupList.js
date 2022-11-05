@@ -8,9 +8,6 @@ let added = groupName.value;
 Groups.push(added)
 console.log(Groups);
 
-
-
-
 function addGroup(event){
     
     const newGroup = document.createElement("li");
@@ -36,7 +33,7 @@ function addGroup(event){
     x.classList.add("btn")
     x.classList.add("btn-primary")
     x.classList.add("details-btn")
-    groupList.appendChild(newGroup)
+    groupList.appendChild(newGedadfwroup)
 
     post('/GroupList.js', function(req, res) {// success callback
 			var name = groupName;

@@ -211,10 +211,11 @@ i {
 
 #profile_container {
     /* border: 2px solid red; */
-    width: 95%;
+    width: 56%;
     display: flex;
     flex-direction: row;
-    position: absolute;
+    position: relative;
+    justify-content: space-between;
     top: 153px;
     left: 41px;
 }
@@ -270,7 +271,7 @@ i {
 #profile_details {
     /* border: 2px solid blue; */
     width: 597px;
-    position: absolute;
+    position: relative;
     left: 243px;
     top: 30px;
 }
