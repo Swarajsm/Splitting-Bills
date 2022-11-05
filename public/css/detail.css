@@ -101,6 +101,7 @@ i {
 
 .hori-selector .right {
     right: -25px;
+    display: none;
 }
 
 .hori-selector .left {
