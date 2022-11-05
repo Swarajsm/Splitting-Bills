@@ -1,14 +1,19 @@
+////
 const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
-
+const Groups = require("./models/Groups")
 const user = require("./models/User");
 const CryptoJS = require("crypto-js");
-var fname, lname, email;
+require("dotenv").config()
+const Atlas = process.env.DB_URI
+
+////////
 var isloggedIn = false
+/////
 mongoose.connect(
-  "mongodb+srv://admin:1234@cluster0.vwzmikm.mongodb.net/?retryWrites=true&w=majority",
+  Atlas,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -21,6 +26,7 @@ db.once("open", function (callback) {
   console.log("connection succeeded");
 });
 // express
+///////
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -30,6 +36,9 @@ app.use(express.static("public"));
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/login.html");
 });
+
+
+var fun = {};
 //Post method for login form at "/"
 
 app.post("/", async function (req, res) {
@@ -43,7 +52,7 @@ app.post("/", async function (req, res) {
     email: email,
     //pass: password
   };
-  const fun = await user.find(formData).catch((err) => {
+  fun = await user.find(formData).catch((err) => {
     console.log(err);
   });
   console.log(fun)
@@ -54,8 +63,8 @@ app.post("/", async function (req, res) {
   var originalText = bytes.toString(CryptoJS.enc.Utf8);
 
   if (password === originalText) {
-    isloggedIn = true
     res.redirect("/html/groupList.html");
+    isloggedIn = true
   } else {
     res.redirect("/");
   }
@@ -64,9 +73,9 @@ app.post("/", async function (req, res) {
 //Post Method for Registration Form
 app.post("/Signup.html", async (req, res) => {
   try {
-    fname = req.body.fname;
-    lname = req.body.lname;
-    email = req.body.email;
+    const fname = req.body.fname;
+    const lname = req.body.lname;
+    const email = req.body.email;
     var pass = req.body.pass;
 
     // Encrypt
@@ -78,38 +87,38 @@ app.post("/Signup.html", async (req, res) => {
       email: email,
       password: dbciphertext,
     };
-    /**
-     db.collection('user').insertOne(userdata,function(err, collection){
-         if (err) throw err;
-        console.log("Record inserted Successfully");
-              
-     });
-     */
-
+    
     await user.create(userdata).catch((err) => {
       console.log(err);
     });
+    res.redirect("/")
 
-    // return res.redirect('/');
-  } catch (err) {
+    
+  }catch (err) {
     console.log("failed " + err);
     res.redirect("/Signup.html");
   }
 });
 
-app.post("/html/groupList.html", (req, res) => {
-  var name = req.body.groupname;
-  const Groups = [];
-  Groups.add(name);
-  db.collection("groups").insertOne(name, function (err, collection) {
-    if (err) throw err;
-    console.log("Group Entry Succesful");
+app.post("/html/groupList.html", async(req, res)=>{
+  var gName = req.body.groupNm
+  var groupData = {
+    gname: gName,
+    members: 1
+  };
+  await Groups.create(groupData).catch((err) => {
+    console.log(err);
   });
-});
 
-app.get("/scripts/GroupList.js", function (req, res) {
-  console.log(Groups);
-});
+})
+
+//Post method for Profile page
+app.post("/html/Profile.html", async(req, res) => {
+    
+    
+
+})
+
 
 //Setting up our server at port 3000
 app.listen(3000, function (req, res) {
