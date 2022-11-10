@@ -27,8 +27,8 @@
 }
 
 #SearchBar #addBtn{
-    /* left: 102px; */
-    top: 42px;
+    left: 73px; 
+    top: 53px;
 }
 
 #addBtn button{
@@ -53,8 +53,8 @@
 
 #SearchBar #Cancel{
     display: block;
-    top: 96px;
-    left: 88px;
+    top: 53px;
+    left: 215px;
 }
 
 #Cancel button{
@@ -65,9 +65,6 @@
     font-size: 18px;
 }
 
-#grpIcon #edit_pic {
-    top: 146px;
-    left: 274px;
-}
+
 
 
