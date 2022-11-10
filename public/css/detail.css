@@ -101,6 +101,7 @@ i {
 
 .hori-selector .right {
     right: -25px;
+    display: none;
 }
 
 .hori-selector .left {
@@ -236,11 +237,13 @@ body {
     background-color: rgb(0, 136, 167);
     border: 1px solid rgb(0, 136, 167);
     color: white;
-    padding: 10px 30px;
+    height: 60px;
+    width: 199px;
+    /* padding: 10px 30px; */
     cursor: pointer;
     float: left;
-    margin-right: 2rem;
-    margin-left: 30rem;
+    /* margin-right: 2rem; */
+    /* margin-left: 30rem; */
     font-size: 25px;
 }
 
@@ -254,7 +257,7 @@ form.example input[type=text] {
     border: 1px solid grey;
     float: left;
     width: 20%;
-    background: #f1f1f1;
+    background: white;
     margin-left: 2rem;
 }
 
@@ -280,14 +283,14 @@ form.example::after {
     display: table;
 }
 
-.vl {
+/* .vl {
     border-left: 2px solid #0088a7;
     height: 100%;
     position: absolute;
     left: 30%;
     margin-left: -3px;
     top: 0;
-}
+} */
 
 
 /* Clear floats (clearfix hack) */
@@ -303,14 +306,14 @@ form.example::after {
 
 .btn-group button:hover {
     background-color: black;
-    ;
+    
 }
 
-h1 {
+/* h1 {
     padding-left: 8rem;
     color: white;
     background-color: rgb(0, 136, 167);
-}
+} */
 
 .table {
     font-size: 20px;
@@ -318,8 +321,9 @@ h1 {
     width: 50%;
 }
 
-.table-responsive>.table-bordered {
-    width: 50%;
+.table-responsive>.table-bordered { 
+    width: 73%;
+    /* border: 2px solid red; */
 }
 
 .card {
@@ -331,4 +335,124 @@ h1 {
 
 .btn-info {
     padding-left: 10px;
+}
+
+#container_d{
+    width: 100%;
+    display: flex;
+}
+
+#GroupTitle{
+    border-bottom: 1px solid #0088a7;
+    width: 100%;
+    background-color:honeydew
+}
+
+#GroupTitle h2{
+    color: #212529;
+    /* text-align: center; */
+    padding: 10px 0px 10px 30px;
+    margin: 0px;
+    position: relative;
+}
+
+#GroupTitle i{
+    display: none;
+}
+
+#GroupTitle a{
+    display: none;
+}
+#Expenses{
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1095px;
+    height: 368px;
+    position: relative;
+    top: 35px;
+}
+
+#Expenses #Action_btns{
+    /* border: 2px solid green; */
+    display: flex;
+    justify-content: space-between;
+    width: 697px;
+    position: relative;
+    left: 209px;
+}
+
+#Action_btns button{
+    border-radius: 10px;
+}
+
+.btn-group-vertical>.btn, .btn-group>.btn {
+    position: relative;
+    /* -ms-flex: 1 1 auto; */
+    flex: 0 0 auto;
+}
+
+#SearchM{
+    border-left: 3px solid #0088a7;
+    height: 637px;
+    width: 409px;
+}
+
+#SearchBar{
+    /* border: 2px solid red; */
+    position: relative;
+    top: 26px;
+    left: 14px;
+}
+
+form #searchBtn{
+    width: 55px;
+    /* padding: 8px 15px 8px 18px; */
+    position: relative;
+    left: 0px;
+    background-color: #0088a7;
+    color: white;
+    font-size: 17px;
+    text-align: center;
+    border-top-right-radius:4px; 
+    border-bottom-right-radius:4px; 
+}
+
+i {
+    margin-right: 4px;
+}
+
+#SearchBar form #search_ip{
+    /* padding: 9px 122px 9px 15px; */
+    border-top-left-radius:4px; 
+    border-bottom-left-radius:4px; 
+    width: 278px;
+}
+
+#SearchBar #addBtn{
+    /* border: 2px solid blue; */
+    position: absolute;
+    left: 145px;
+}
+
+#addBtn button{
+    margin-top: 13px;
+    padding-left: 21px;
+    padding-right: 21px;
+    background-color: #0088a7;
+}
+
+/* #SearchBar #Contd{
+    position: absolute;
+    top: 103px;
+    left: 137px;
+    display: none;
+} */
+
+#SearchBar #Cancel{
+    position: absolute;
+    top: 103px;
+    left: 137px;
+    display: none;
 }

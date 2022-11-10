@@ -1,0 +1,103 @@
+#GroupTitle{
+    height: 50px;
+}
+
+#GroupTitle h2{
+    padding: 10px 0px 10px 28px;
+    left: 0px;
+    font-size: 24px;
+    width: 212px;
+    display: inline-block;
+}
+
+#GroupTitle i{
+    display: inline;
+    position: relative;
+    left: 2px;
+    font-size: 24px;
+    color: #212529;
+}
+
+#GroupTitle a{
+    display: inline;
+}
+#GroupTitle #add_members{
+    position: relative;
+    left: 143px;
+    background-color: rgba(255, 255, 255, 0);
+    border:none;
+}
+
+#GroupTitle i:hover{
+    color: #0088a7;   
+}
+
+.dropdown {
+    /* float: left; */
+    overflow: hidden;
+    position: relative;
+    top: -36px;
+    left: 216px;
+}  
+
+.dropdown-content { 
+    /* display: none;
+    /* position: absolute;  */
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}  
+
+.show {
+    display: block;
+  }
+
+#SearchM{
+    display: none;
+}
+
+#Expenses{
+    height: 558px;
+    z-index: -1;
+}
+
+#Expenses #Action_btns{
+    /* border: 2px solid red; */
+    flex-direction: column;
+    align-items: center;
+    width: 206px;
+    height: 205px;
+    left: 0px;
+    margin: 0px auto;
+}
+
+#Action_btns button{
+    width: 285px;
+    font-size: 22px;
+}
+
+.table-responsive{
+    position: relative;
+    top: -62px;
+}
+
+.table-responsive>.table-bordered { 
+    width: 92%;
+}
+
+#SearchBar #Cancel{
+    display: block;
+    top: 96px;
+    left: 88px;
+}
+
+#Cancel button{
+    margin-top: 13px;
+    padding-left: 29px;
+    padding-right: 29px;
+    background-color: #0088a7;
+    font-size: 18px;
+}
+
+
