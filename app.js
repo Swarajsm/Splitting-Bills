@@ -140,7 +140,8 @@ app.post("/groupList", async(req, res) => {
 //Post method for Profile page
 app.post("views/Profile.ejs", async(req, res) => {
     let params = {
-        fcurrUser: currUser
+        fcurrUser: currUser,
+        email: fun[0].email
     }
     res.render('Profile', params)
 
