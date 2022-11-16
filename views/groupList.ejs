@@ -33,9 +33,23 @@
             </div>
         </li>
     </ul>
-
-
     -->
+
+
+        <ul class="Group-List">
+            <% fun[0].Groups.forEach(function(item){%>
+                <li class="group">
+                    <div class="card w-50 h-25">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= item%>
+                            </h5>
+                            <a href="/detail" class="btn btn-primary" id="details-btn">Details</a>
+                        </div>
+                    </div>
+                </li>
+                <% }); %>
+        </ul>
 
 
 

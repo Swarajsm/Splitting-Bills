@@ -22,26 +22,28 @@
         <br>
         <div id="addExpense"><img class="addExpense" src="../images/addExpense.png" alt="splitter" ALIGN=left>
             <br>
-            <div>
-                <input class="date" type="date">
-                <input class="totalbill" type="text" placeholder="Total Bill Amount" Required>
-            </div>
-            <br>
-            <div>
-                <input class="billname" type="text" placeholder="Bill Name" Required>
-            </div>
-            <br>
-            <div>
-                <input class="people" type="text" placeholder="Enter number of people" Required>
-            </div>
-            <br>
-            <div>
-                <input class="split" type="text" placeholder="Enter Split Percentage" Required>
-            </div>
-            <br>
-            <div>
-                <button class="button" type="button" class="btn btn-info">SAVE</button>
-            </div>
+            <form method="post" action="/addExpense">
+                <div>
+                    <input name="BillName" class="billname" type="text" placeholder="Bill Name" Required>
+                </div>
+                <br>
+                <div>
+                    <input class="date" type="date">
+                    <input name="totAmount" class="totalbill" type="text" placeholder="Total Bill Amount" Required>
+                </div>
+                <br>
+                <div>
+                    <input name="people" class="people" type="text" placeholder="Enter number of people" Required>
+                </div>
+                <!-- <br>
+                <div>
+                    <input name="splitPer" class="split" type="text" placeholder="Enter Split Percentage" Required>
+                </div> -->
+                <br>
+                <div>
+                    <button class="button" type="submit" class="btn btn-info">SAVE</button>
+                </div>
+            </form>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
