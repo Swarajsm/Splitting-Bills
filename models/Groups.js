@@ -3,7 +3,7 @@ const Groups = mongoose.model("Groups",new mongoose.Schema({
     "gname": {
         type: String,
         required: true,
-        minlength: 5,
+        minlength: 1,
         maxlength: 50
     },
     

@@ -33,7 +33,7 @@ function addGroup(event){
     x.classList.add("btn")
     x.classList.add("btn-primary")
     x.classList.add("details-btn")
-    groupList.appendChild(newGedadfwroup)
+    groupList.appendChild(newGroup)
 
     post('/GroupList.js', function(req, res) {// success callback
 			var name = groupName;
