@@ -1,3 +1,4 @@
+const { array } = require('i/lib/util');
 const mongoose  = require('mongoose');
 const User = mongoose.model("user",new mongoose.Schema({
     "name": {
@@ -18,6 +19,11 @@ const User = mongoose.model("user",new mongoose.Schema({
         required: true,
         minlength: 5,
         maxlength: 1024
+    },
+    "Groups": {
+        type: Array,
+        required: true
+        
     }
 })
 );
