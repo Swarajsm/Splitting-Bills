@@ -153,7 +153,15 @@ app.post("views/Profile.ejs", async(req, res) => {
 
 })
 
-app.post("/html/detail.html", async function(req, res) {
+app.post("/views/detail", async function(req, res) {
+    var search = req.body.uname
+    var searchData = {
+        email: search
+    }
+    var stu = await user.find(searchData).catch((e) => {
+        console.log(e)
+    })
+    console.log(stu)
 
 
 })
