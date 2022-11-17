@@ -127,11 +127,16 @@ app.post("/groupList", async(req, res) => {
         memberArray: memberArray
 
     }
+    var groupList = fun[0].Groups
     await Groups.create(groupData).catch((err) => {
         console.log(err);
     });
     fun[0].Groups.push(Groupnm)
-    console.log(fun)
+    await fun[0].save()
+    let params = {
+        groupList: fun[0].Groups
+    }
+    res.render("groupList", params)
 
 })
 
@@ -140,7 +145,8 @@ app.post("/groupList", async(req, res) => {
 //Post method for Profile page
 app.post("views/Profile.ejs", async(req, res) => {
     let params = {
-        fcurrUser: currUser
+        fcurrUser: currUser,
+        email: fun[0].email
     }
     res.render('Profile', params)
 
@@ -217,3 +223,15 @@ app.post("/views/Signup", async(req, res) => {
         res.render("Signup");
     }
 });
+
+// app.post("/addExpense", async function(req,res){
+//     var title = req.body.BillName
+//     var totalAmount = req.body.totAmount
+//     var participants = req.body.people
+
+//     var expense = {
+//         title: title,
+//         amount: totalAmount,
+//         memberArray: 
+//     }
+// });
