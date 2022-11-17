@@ -24,6 +24,10 @@ const User = mongoose.model("user",new mongoose.Schema({
         type: Array,
         required: true
         
+    },
+    "totalBudget":{
+        type: String,
+        required: true,
     }
 })
 );
