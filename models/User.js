@@ -22,6 +22,16 @@ const User = mongoose.model("user", new mongoose.Schema({
     "Groups": {
         type: Array,
         required: true
+    },
+    "GroupsOid":{
+        type: Array,
+        
+        minlength: 5,
+        maxlength: 50
+    },
+    "totalBudget":{
+        type: String,
+        
     }
 }));
 module.exports = User;

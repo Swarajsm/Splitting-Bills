@@ -13,7 +13,7 @@ const Transactions = mongoose.model("Transactions", new mongoose.Schema({
 
     },
 
-    "memberArray": {
+    "participants": {
         type: Array,
         minLength: 1,
         required: true
