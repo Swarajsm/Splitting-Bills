@@ -56,6 +56,7 @@ app.get("/settings", function(req, res) {
 });
 
 app.get("/detail", async function(req, res) {});
+
 var currUser = " ";
 var currUserID = "";
 var userGroup = [];
@@ -125,6 +126,7 @@ app.post("/groupList", async(req, res) => {
     var Groupnm = req.body.groupNm;
     var memCount = 1;
     var memberArray = [currUserID];
+    transactions = []
     var data = {
         email: currUserEmail,
     };
@@ -138,6 +140,7 @@ app.post("/groupList", async(req, res) => {
         gname: Groupnm,
         members: memCount,
         memberArray: memberArray,
+        transactions: transactions
     };
 
     var newG = await Groups.create(groupData).catch((err) => {
@@ -167,12 +170,8 @@ app.post("Groups/:id", async function(req, res) {
     res.render("detail", { Group, Group });
 });
 
-//Setting up our server at port 3000
-app.listen(3000, function(req, res) {
-    console.log("Server Started on Port 3000");
-});
 
-app.post("/addexpense", async function(req, res) {
+app.post("addexpense", async function(req, res) {
     var title = req.body.BillName;
     var billAmount = req.body.totAmount;
     var participants = [currUser];
@@ -183,7 +182,20 @@ app.post("/addexpense", async function(req, res) {
         participants: participants,
         dateOfTransaction: DateOfTransaction,
     };
-    await transactions.create(bill).catch((e) => {
+    newBill = await transactions.create(bill).catch((e) => {
         console.log(e);
     });
+    Groups.transactions.push(newBill._id)
+
+});
+
+
+
+
+
+
+
+//Setting up our server at port 3000
+app.listen(3000, function(req, res) {
+    console.log("Server Started on Port 3000");
 });
