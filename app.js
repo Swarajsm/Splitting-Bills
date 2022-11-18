@@ -232,7 +232,7 @@ app.post("/views/Signup", async(req, res) => {
     }
 });
 
-// app.post("/addExpense", async function(req,res){
+// app.post("/addExpense", async function(req, res) {
 //     var title = req.body.BillName
 //     var totalAmount = req.body.totAmount
 //     var participants = req.body.people
@@ -243,3 +243,9 @@ app.post("/views/Signup", async(req, res) => {
 //         memberArray: 
 //     }
 // });
+
+app.post("/addExpense", async function(req, res) {
+    const member = ["Swaraj", "Stuti", "Sanskar"];
+    var participants = []
+
+});
