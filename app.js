@@ -44,7 +44,8 @@ app.get("/Group/:id", async function(req, res) {
 });
 
 app.get("/addExpense", function(req, res) {
-    res.render("addExpense");
+    member = ["Swaraj", "Stuti", "Mayank", "Rishika"]
+    res.render("addExpense", { member: member });
 });
 
 app.get("/addGroup", function(req, res) {
@@ -90,8 +91,6 @@ app.post("/", async function(req, res) {
         currUserEmail = fun[0].email;
         userGroup = [];
     }
-
-    // Decrypt
 });
 
 app.post("/views/Signup", async(req, res) => {
@@ -151,15 +150,28 @@ app.post("/groupList", async(req, res) => {
         groupList: userGroup,
     });
 });
-
 //Post method for Profile page
 app.post("views/Profile.ejs", async(req, res) => {
     let params = {
         fcurrUser: currUser,
-        email: fun[0].email,
-    };
-    console.log(currUser);
-    res.render("Profile", params);
+        email: fun[0].email
+    }
+    res.render('Profile', params)
+
+
+});
+
+app.post("/views/detail", async function(req, res) {
+    var search = req.body.uname
+    var searchData = {
+        email: search
+    }
+    var stu = await user.find(searchData).catch((e) => {
+        console.log(e)
+    })
+    console.log(stu)
+
+
 });
 
 app.post("Groups/:id", async function(req, res) {
@@ -174,8 +186,9 @@ app.listen(3000, function(req, res) {
 
 app.post("/addexpense", async function(req, res) {
     var title = req.body.BillName;
+    const member = ["Swaraj", "Stuti", "Mayank", "Rishika"];
+    var participants = []
     var billAmount = req.body.totAmount;
-    var participants = [currUser];
     var DateOfTransaction = req.body.date;
     var bill = {
         title: title,
@@ -187,3 +200,15 @@ app.post("/addexpense", async function(req, res) {
         console.log(e);
     });
 });
+
+// app.post("/addExpense", async function(req, res) {
+//     var title = req.body.BillName
+//     var totalAmount = req.body.totAmount
+//     var participants = req.body.people
+
+//     var expense = {
+//         title: title,
+//         amount: totalAmount,
+//         memberArray: 
+//     }
+// });

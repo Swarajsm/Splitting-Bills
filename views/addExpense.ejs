@@ -28,17 +28,25 @@
                 </div>
                 <br>
                 <div>
-                    <input name= "date" class="date" type="date">
-                    <input name="totAmount" class="totalbill" type="text" placeholder="Total Bill Amount" Required>
+                    <input name="date" class="date" type="date" placeholder="Date" required>
                 </div>
                 <br>
                 <div>
-                    <input name="people" class="people" type="text" placeholder="Enter number of people" Required>
+                    <input name="totAmount" class="totalbill" type="text" placeholder="Total Bill Amount" Required>
                 </div>
-                <!-- <br>
-                <div>
-                    <input name="splitPer" class="split" type="text" placeholder="Enter Split Percentage" Required>
-                </div> -->
+                <br>
+                <div class="checkbox-dropdown people">
+                    Add Members
+                    <ul class="checkbox-dropdown-list ">
+                        <% member.forEach(function(item){%>
+                            <li>
+                                <label>
+                              <input type="checkbox" value="Vejle" name="city"><%= item%></label>
+                            </li>
+                            <% }); %>
+                    </ul>
+                </div>
+                <br>
                 <br>
                 <div>
                     <button class="button" type="submit" class="btn btn-info">SAVE</button>
@@ -55,8 +63,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../js/navbar.js"></script>
-
+        <script type="text/javascript" src="/js/navbar.js"></script>
+        <script type="text/javascript" src="/js/addExpense.js"></script>
 
 
 </body>
