@@ -28,21 +28,33 @@
     <%- include('navbar.ejs') %>
         <br><br>
 
-        <form class="example" action="/Groups/:id" method="post">
+        <form action="/addMember/<%=Group.id%>" method="post">
             <input type="text" placeholder="Search members.." name="uname">
-            <button type="menu"><i class="fa fa-search"></i></button>
-            <button type="submit">Add</button>
+
+            <button class="btn btn-primary pb-8" type="submit">Add</button>
         </form>
+        <ul>
+            <% Group.memberArray.forEach(function(item) { %>
+                <li>
+                    <h4>
+                        <%= item  %>
+                    </h4>
+                </li>
+                <%    });%>
+        </ul>
+
         <div class="vl"></div>
 
 
         <div style=" left:11rem; top:2px; float:right">
-            <h1 name="title" style="padding-left: 28rem;"><%=Group.gname%></h1>
+            <h1 name="title" style="padding-left: 28rem;">
+                <%=Group.gname%>
+            </h1>
             <br>
             <div class="btn-group" style="padding-left: 5rem;">
                 <button type="button" class="btn btn-info">Settle Up</button>
                 <button type="button" class="btn btn-info">Balance</button>
-                <button type="button" class="btn btn-info"><a href="/addExpense" style="text-decoration: none; color:white">Add Expenses</a></button>
+                <button type="button" class="btn btn-info"><a href="/addExpense/<%=Group.id%>" style="text-decoration: none; color:white">Add Expenses</a></button>
             </div>
             <br>
             <br>

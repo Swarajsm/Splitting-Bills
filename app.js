@@ -19,6 +19,10 @@ app.set("view engine", "ejs");
 
 //Setting up root file for Server at localhost:3000
 
+app.get("/detail", async function(req, res) {
+    const Group = await Groups.findById(req.params.id)
+    res.render("detail", { Group: Group })
+})
 app.get("/", async function(req, res) {
     var gList = await Groups.findById(req.params.id);
     res.render("login"), { gList: gList };
@@ -43,8 +47,20 @@ app.get("/Group/:id", async function(req, res) {
     res.render("detail", { Group: Group });
 });
 
-app.get("/addExpense", function(req, res) {
-    res.render("addExpense");
+app.get("/addMember/:id", async function(req, res) {
+    const Group = await Groups.findById(req.params.id)
+    res.render("detail", { Group: Group })
+})
+
+app.get("/addExpense/:id", async function(req, res) {
+    const Group = await Groups.findById(req.params.id)
+
+    member = Group.MemberOids
+    parama = {
+        Group: Group,
+        member: member
+    }
+    res.render("addExpense", parama);
 });
 
 app.get("/addGroup", function(req, res) {
@@ -91,8 +107,6 @@ app.post("/", async function(req, res) {
         currUserEmail = fun[0].email;
         userGroup = [];
     }
-
-    // Decrypt
 });
 
 app.post("/views/Signup", async(req, res) => {
@@ -125,8 +139,9 @@ app.post("/views/Signup", async(req, res) => {
 app.post("/groupList", async(req, res) => {
     var Groupnm = req.body.groupNm;
     var memCount = 1;
-    var memberArray = [currUserID];
-    transactions = []
+    var memberArray = [currUser];
+    var MemberOids = [currUserID]
+    spendings = []
     var data = {
         email: currUserEmail,
     };
@@ -140,7 +155,8 @@ app.post("/groupList", async(req, res) => {
         gname: Groupnm,
         members: memCount,
         memberArray: memberArray,
-        transactions: transactions
+        transactions: transactions,
+        MemberOids: MemberOids
     };
 
     var newG = await Groups.create(groupData).catch((err) => {
@@ -154,28 +170,46 @@ app.post("/groupList", async(req, res) => {
         groupList: userGroup,
     });
 });
-
 //Post method for Profile page
 app.post("views/Profile.ejs", async(req, res) => {
     let params = {
         fcurrUser: currUser,
-        email: fun[0].email,
-    };
-    console.log(currUser);
-    res.render("Profile", params);
+        email: fun[0].email
+    }
+    res.render('Profile', params)
+
+
 });
 
-app.post("Groups/:id", async function(req, res) {
+app.post("/addMember/:id", async function(req, res) {
     const Group = await Groups.findById(req.params.id);
-    res.render("detail", { Group, Group });
+    username = req.body.uname
+    formdataa = {
+        email: username
+    }
+    newv = await user.find(formdataa).catch((e) => {
+        console.log(e);
+    })
+    console.log(newv[0].name)
+    Group.memberArray.push(newv[0].name)
+    Group.MemberOids.push(newv[0]._id)
+    newv[0].Groups.push(Group.gname)
+    newv[0].GroupsOid.push(Group.id)
+    await newv[0].save()
+    await Group.save()
+    res.render("detail", { Group: Group })
+
 });
 
 
-app.post("addexpense", async function(req, res) {
+
+app.post("/addExpense/:id", async function(req, res) {
     var title = req.body.BillName;
+    const Group = await Groups.findById(req.params.id)
+    var memberArray = Group.memberArray
+    var participants = []
     var billAmount = req.body.totAmount;
-    var participants = [currUser];
-    var DateOfTransaction = req.body.date;
+    var DateOfTransaction = req.body.date.toLocaleString()
     var bill = {
         title: title,
         amount: billAmount,
@@ -185,14 +219,9 @@ app.post("addexpense", async function(req, res) {
     newBill = await transactions.create(bill).catch((e) => {
         console.log(e);
     });
-    Groups.transactions.push(newBill._id)
 
+    res.render("detail", { Group: Group })
 });
-
-
-
-
-
 
 
 //Setting up our server at port 3000
