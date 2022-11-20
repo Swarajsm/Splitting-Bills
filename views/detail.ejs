@@ -68,18 +68,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Super Market</td>
-                            <td>5000</td>
-                        </tr>
-                        <tr>
-                            <td>Lunch</td>
-                            <td>600</td>
-                        </tr>
-                        <tr>
-                            <td>Dinner</td>
-                            <td>1200</td>
-                        </tr>
+                        <% Transactions.forEach(function(item){%>
+                            <% var i =0%>
+                                <tr>
+
+                                    <td>
+                                        <%= item%>
+                                    </td>
+
+                                    <td>
+                                        <%=TransactionsAmt[i] %>
+                                            <%i++ %>
+
+                                    </td>
+
+
+                                </tr>
+                                <% }); %>
                     </tbody>
                 </table>
             </div>

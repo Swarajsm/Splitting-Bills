@@ -20,8 +20,11 @@ const Groups = mongoose.model("Groups", new mongoose.Schema({
 
     },
     "transaction": {
-        type: Array,
+        type: Array
 
+    },
+    "transactionIDs": {
+        type: Array
     }
 
 }));

@@ -44,12 +44,28 @@ app.get("/Profile/:id", async function(req, res) {
 
 app.get("/Group/:id", async function(req, res) {
     const Group = await Groups.findById(req.params.id);
-    res.render("detail", { Group: Group });
+    console.log(Group.transaction)
+    Transactions = Group.transaction
+    TransactionsAmt = [5000, 2340, 2110, 400]
+    parameters = {
+        Group: Group,
+        Transactions: Transactions,
+        TransactionsAmt: TransactionsAmt
+    }
+    res.render("detail", parameters);
 });
 
 app.get("/addMember/:id", async function(req, res) {
     const Group = await Groups.findById(req.params.id)
-    res.render("detail", { Group: Group })
+    Transactions = ["Super Market", "Dinner", "Dmart", "Lunch"]
+    TransactionsAmt = [5000, 2340, 2110, 400]
+    parameters = {
+        Group: Group,
+        Transactions: Transactions,
+        TransactionsAmt: TransactionsAmt
+    }
+    res.render("detail", parameters);
+
 })
 
 app.get("/addExpense/:id", async function(req, res) {
@@ -197,6 +213,9 @@ app.post("/addMember/:id", async function(req, res) {
     newv[0].GroupsOid.push(Group.id)
     await newv[0].save()
     await Group.save()
+
+    var transactions = ["Super Market", "Dinner", "Dmart", "Lunch"]
+
     res.render("detail", { Group: Group })
 
 });
@@ -219,7 +238,10 @@ app.post("/addExpense/:id", async function(req, res) {
     newBill = await transactions.create(bill).catch((e) => {
         console.log(e);
     });
-
+    console.log(newBill)
+    Group.transaction.push(newBill.title)
+    Group.transactionIDs.push(newBill._id)
+    await Group.save()
     res.render("detail", { Group: Group })
 });
 
