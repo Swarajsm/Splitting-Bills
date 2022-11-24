@@ -5,6 +5,7 @@ const Groups = require("./models/Groups");
 const user = require("./models/User");
 const transactions = require("./models/Spending");
 const CryptoJS = require("crypto-js");
+const Transactions = require("./models/Spending");
 require("dotenv").config();
 
 require("./startup/db_conn");
@@ -36,20 +37,24 @@ app.get("/groupList", async function(req, res) {
     var gList = await Groups.find();
     res.render("groupList", gList);
 });
-
 app.get("/Profile/:id", async function(req, res) {
     const User = await user.findById(req.params.id);
     res.render("Profile", { User: User });
 });
-
 app.get("/Group/:id", async function(req, res) {
     const Group = await Groups.findById(req.params.id);
-    console.log(Group.transaction)
-    Transactions = Group.transaction
-    TransactionsAmt = [5000, 2340, 2110, 400]
+
+    TransactionsList = Group.transaction
+    transactionIDs = Group.transactionIDs
+    TransactionsAmt = Group.Amounts
+        // for (var i = 0; i < TransactionsList.length; i++) {
+        //     Amount = await transactions.findById(transactionIDs[i])
+        //     TransactionsAmt.push(Amount.amount)
+        // }
+        // await Group.save()
     parameters = {
         Group: Group,
-        Transactions: Transactions,
+        Transactions: TransactionsList,
         TransactionsAmt: TransactionsAmt
     }
     res.render("detail", parameters);
@@ -57,26 +62,43 @@ app.get("/Group/:id", async function(req, res) {
 
 app.get("/addMember/:id", async function(req, res) {
     const Group = await Groups.findById(req.params.id)
-    Transactions = ["Super Market", "Dinner", "Dmart", "Lunch"]
-    TransactionsAmt = [5000, 2340, 2110, 400]
+    TransactionsList = Group.transaction
+    TransactionsAmt = Group.Amounts
+        // for (var i = 0; i < TransactionsList.length; i++) {
+        //     Amount = await transactions.findById(transactionIDs[i])
+        //     TransactionsAmt.push(Amount.amount)
+        // }
+        // await Group.save()
     parameters = {
         Group: Group,
-        Transactions: Transactions,
+        Transactions: TransactionsList,
         TransactionsAmt: TransactionsAmt
     }
     res.render("detail", parameters);
 
 })
-
+app.get("/groupList", async function(req, res) {
+    userGroup = fun[0].Groups
+    res.render("groupList", { userGroup: userGroup })
+})
 app.get("/addExpense/:id", async function(req, res) {
     const Group = await Groups.findById(req.params.id)
 
     member = Group.MemberOids
-    parama = {
+    TransactionsList = Group.transaction
+    TransactionsAmt = Group.Amounts
+        // for (var i = 0; i < TransactionsList.length; i++) {
+        //     Amount = await transactions.findById(transactionIDs[i])
+        //     TransactionsAmt.push(Amount.amount)
+        // }
+        // await Group.save()
+    parameters = {
         Group: Group,
-        member: member
+        Transactions: TransactionsList,
+        TransactionsAmt: TransactionsAmt
     }
-    res.render("addExpense", parama);
+
+    res.render("addExpense", parameters);
 });
 
 app.get("/addGroup", function(req, res) {
@@ -187,7 +209,7 @@ app.post("/groupList", async(req, res) => {
     });
 });
 //Post method for Profile page
-app.post("views/Profile.ejs", async(req, res) => {
+app.post("Profile", async(req, res) => {
     let params = {
         fcurrUser: currUser,
         email: fun[0].email
@@ -214,14 +236,11 @@ app.post("/addMember/:id", async function(req, res) {
     await newv[0].save()
     await Group.save()
 
-    var transactions = ["Super Market", "Dinner", "Dmart", "Lunch"]
+
 
     res.render("detail", { Group: Group })
 
 });
-
-
-
 app.post("/addExpense/:id", async function(req, res) {
     var title = req.body.BillName;
     const Group = await Groups.findById(req.params.id)
@@ -238,9 +257,10 @@ app.post("/addExpense/:id", async function(req, res) {
     newBill = await transactions.create(bill).catch((e) => {
         console.log(e);
     });
-    console.log(newBill)
+
     Group.transaction.push(newBill.title)
     Group.transactionIDs.push(newBill._id)
+    Group.Amounts.push(newBill.amount)
     await Group.save()
     res.render("detail", { Group: Group })
 });
