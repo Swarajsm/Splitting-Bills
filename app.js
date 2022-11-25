@@ -5,9 +5,8 @@ const Groups = require("./models/Groups");
 const user = require("./models/User");
 const transactions = require("./models/Spending");
 const CryptoJS = require("crypto-js");
-const Transactions = require("./models/Spending");
-require("dotenv").config();
 
+require("dotenv").config();
 require("./startup/db_conn");
 
 //express
@@ -26,7 +25,7 @@ app.get("/detail", async function(req, res) {
 })
 app.get("/", async function(req, res) {
     var gList = await Groups.findById(req.params.id);
-    res.render("login"), { gList: gList };
+    res.render("Auth"), { gList: gList };
 });
 
 app.get("/Signup", function(req, res) {
@@ -79,7 +78,7 @@ app.get("/addMember/:id", async function(req, res) {
 })
 app.get("/groupList", async function(req, res) {
     userGroup = fun[0].Groups
-    res.render("groupList", { userGroup: userGroup })
+    res.render("/groupList", { userGroup: userGroup })
 })
 app.get("/addExpense/:id", async function(req, res) {
     const Group = await Groups.findById(req.params.id)
@@ -92,6 +91,7 @@ app.get("/addExpense/:id", async function(req, res) {
         //     TransactionsAmt.push(Amount.amount)
         // }
         // await Group.save()
+    console.log(TransactionsList)
     parameters = {
         Group: Group,
         Transactions: TransactionsList,
@@ -101,9 +101,6 @@ app.get("/addExpense/:id", async function(req, res) {
     res.render("addExpense", parameters);
 });
 
-app.get("/addGroup", function(req, res) {
-    res.render("addGroup");
-});
 
 app.get("/settings", function(req, res) {
     res.render("settings");
@@ -162,6 +159,7 @@ app.post("/views/Signup", async(req, res) => {
             name: fname + " " + lname,
             email: email,
             password: dbciphertext,
+            Balance: 0
         };
 
         await user.create(userdata).catch((err) => {
@@ -204,7 +202,7 @@ app.post("/groupList", async(req, res) => {
     fun[0].GroupsOid.push(newG._id);
 
     await fun[0].save();
-    res.render("/groupList", {
+    res.render("groupList", {
         groupList: userGroup,
     });
 });
@@ -228,7 +226,7 @@ app.post("/addMember/:id", async function(req, res) {
     newv = await user.find(formdataa).catch((e) => {
         console.log(e);
     })
-    console.log(newv[0].name)
+
     Group.memberArray.push(newv[0].name)
     Group.MemberOids.push(newv[0]._id)
     newv[0].Groups.push(Group.gname)
@@ -245,7 +243,7 @@ app.post("/addExpense/:id", async function(req, res) {
     var title = req.body.BillName;
     const Group = await Groups.findById(req.params.id)
     var memberArray = Group.memberArray
-    var participants = []
+
     var billAmount = req.body.totAmount;
     var DateOfTransaction = req.body.date.toLocaleString()
     var bill = {
@@ -257,11 +255,18 @@ app.post("/addExpense/:id", async function(req, res) {
     newBill = await transactions.create(bill).catch((e) => {
         console.log(e);
     });
+    var participants = memberArray.length
+    var partition = billAmount / participants
+    newBalance = fun[0].Balance + partition
+    for (var i = 0; i < memberArray.length; i++) {
+        await user.findByIdAndUpdate(Group.MemberOids[i], { Balance: newBalance })
+    }
 
     Group.transaction.push(newBill.title)
     Group.transactionIDs.push(newBill._id)
     Group.Amounts.push(newBill.amount)
     await Group.save()
+
     res.render("detail", { Group: Group })
 });
 
