@@ -8,7 +8,7 @@ const Transactions = mongoose.model("Transactions", new mongoose.Schema({
     },
 
     "amount": {
-        type: String,
+        type: Number,
         required: true,
 
     },
