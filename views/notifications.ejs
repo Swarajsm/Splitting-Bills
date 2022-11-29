@@ -2,22 +2,26 @@
 <html>
 
 <head>
-
+    <link rel="stylesheet" href="/css/navbar.css" />
 </head>
 
 <body>
     <%- include('navbar.ejs') %>
         <h2>Notifications</h2>
-        <ul>
-            <li class="card">
-                <div class="card-body">
-                    <%= lender %> lent
-                        <%= amount %> to
-                            <%= borrower %>
 
-                </div>
-            </li>
+        <ul>
+            <% for(var i=0; i< borrower.length; i++){%>
+                <li class="card">
+                    <div class="card-body">
+                        You lent
+                        <%= amount  %> to
+                            <%= borrower[i] %>
+
+                    </div>
+                </li>
+                <%}%>
         </ul>
+
 </body>
 
 </html>

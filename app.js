@@ -64,11 +64,7 @@ app.get("/addMember/:id", async function(req, res) {
     const Group = await Groups.findById(req.params.id)
     TransactionsList = Group.transaction
     TransactionsAmt = Group.Amounts
-        // for (var i = 0; i < TransactionsList.length; i++) {
-        //     Amount = await transactions.findById(transactionIDs[i])
-        //     TransactionsAmt.push(Amount.amount)
-        // }
-        // await Group.save()
+
     parameters = {
         Group: Group,
         Transactions: TransactionsList,
@@ -102,11 +98,19 @@ app.get("/settings", function(req, res) {
 });
 
 app.get("/notifications/:id", async function(req, res) {
-
+    const u = await user.findById(req.params.id)
+    lent = u.Lendings
+    var borrower = []
+    for (var i = 0; i < lent.length; i++) {
+        var L = await Ledger.findById(lent[i])
+        console.log(L)
+        borrower.push(L.borrower)
+        console.log(borrower)
+    }
 
     const parameters = {
         lender: fun[0].name,
-        borrower: "Stuti",
+        borrower: borrower,
         amount: 5000
     }
     res.render("notifications", parameters)
