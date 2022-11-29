@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
 const ledger = mongoose.model("ledger", new mongoose.Schema({
     "lender": {
-        type: string,
+        type: String,
         required: true
     },
     "borrower": {
-        type: string,
+        type: Array,
         required: true
     },
     "amount": {
         type: Number,
+        required: true
+    },
+    "date": {
+        type: String,
         required: true
     }
 }));

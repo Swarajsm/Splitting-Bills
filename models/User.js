@@ -32,6 +32,9 @@ const User = mongoose.model("user", new mongoose.Schema({
         minlength: 5,
         maxlength: 50
     },
+    "Lendings": {
+        type: Array
+    }
 
 }));
 module.exports = User;

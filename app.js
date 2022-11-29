@@ -1,10 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const Ledger = require("./models/ledger")
 const Groups = require("./models/Groups");
 const user = require("./models/User");
 const transactions = require("./models/Spending");
 const CryptoJS = require("crypto-js");
+
 
 require("dotenv").config();
 require("./startup/db_conn");
@@ -86,12 +87,6 @@ app.get("/addExpense/:id", async function(req, res) {
     member = Group.MemberOids
     TransactionsList = Group.transaction
     TransactionsAmt = Group.Amounts
-        // for (var i = 0; i < TransactionsList.length; i++) {
-        //     Amount = await transactions.findById(transactionIDs[i])
-        //     TransactionsAmt.push(Amount.amount)
-        // }
-        // await Group.save()
-    console.log(TransactionsList)
     parameters = {
         Group: Group,
         Transactions: TransactionsList,
@@ -105,6 +100,18 @@ app.get("/addExpense/:id", async function(req, res) {
 app.get("/settings", function(req, res) {
     res.render("settings");
 });
+
+app.get("/notifications/:id", async function(req, res) {
+
+
+    const parameters = {
+        lender: fun[0].name,
+        borrower: "Stuti",
+        amount: 5000
+    }
+    res.render("notifications", parameters)
+})
+
 
 app.get("/detail", async function(req, res) {});
 
@@ -249,7 +256,7 @@ app.post("/addExpense/:id", async function(req, res) {
     var bill = {
         title: title,
         amount: billAmount,
-        participants: participants,
+        participants: memberArray,
         dateOfTransaction: DateOfTransaction,
     };
     newBill = await transactions.create(bill).catch((e) => {
@@ -257,15 +264,36 @@ app.post("/addExpense/:id", async function(req, res) {
     });
     var participants = memberArray.length
     var partition = billAmount / participants
-    newBalance = fun[0].Balance + partition
-    for (var i = 0; i < memberArray.length; i++) {
-        await user.findByIdAndUpdate(Group.MemberOids[i], { Balance: newBalance })
+    newBalance = fun[0].Balance + (partition * (participants - 1))
+    borrowers = []
+    for (var i = 0; i < participants; i++) {
+        var u = await user.findById(Group.MemberOids[i])
+
+
+        if (Group.MemberOids[i] != fun[0]._id) {
+            var nB = u.Balance - partition
+            await user.findByIdAndUpdate(fun[0]._id, { Balance: newBalance })
+            await user.findByIdAndUpdate(Group.MemberOids[i], { Balance: nB })
+            borrowers.push(Group.MemberOids[i])
+        }
     }
+
 
     Group.transaction.push(newBill.title)
     Group.transactionIDs.push(newBill._id)
     Group.Amounts.push(newBill.amount)
     await Group.save()
+    var newLedger = {
+        lender: fun[0]._id,
+        borrower: borrowers,
+        amount: partition,
+        date: DateOfTransaction
+    }
+    newLedger = await Ledger.create(newLedger).catch((e) => {
+        console.log(e)
+    })
+    fun[0].Lendings.push(newLedger.id)
+    fun[0].save()
 
     res.render("detail", { Group: Group })
 });
