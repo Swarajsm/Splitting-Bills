@@ -6,6 +6,7 @@ const user = require("./models/User");
 const transactions = require("./models/Spending");
 const CryptoJS = require("crypto-js");
 
+const ledgerbook = require("./models/ledgerbook");
 
 require("dotenv").config();
 require("./startup/db_conn");
@@ -26,6 +27,7 @@ app.get("/detail", async function(req, res) {
 })
 app.get("/", async function(req, res) {
     var gList = await Groups.findById(req.params.id);
+    message = "Incorrect Password. Please try again.";
     res.render("Auth"), { gList: gList };
 });
 
@@ -98,22 +100,8 @@ app.get("/settings", function(req, res) {
 });
 
 app.get("/notifications/:id", async function(req, res) {
-    const u = await user.findById(req.params.id)
-    lent = u.Lendings
-    var borrower = []
-    for (var i = 0; i < lent.length; i++) {
-        var L = await Ledger.findById(lent[i])
-        console.log(L)
-        borrower.push(L.borrower)
-        console.log(borrower)
-    }
 
-    const parameters = {
-        lender: fun[0].name,
-        borrower: borrower,
-        amount: 5000
-    }
-    res.render("notifications", parameters)
+    res.render("notifications")
 })
 
 
@@ -152,6 +140,8 @@ app.post("/", async function(req, res) {
         currUserID = fun[0].id;
         currUserEmail = fun[0].email;
         userGroup = [];
+    } else {
+        res.render("flogin");
     }
 });
 
@@ -298,6 +288,37 @@ app.post("/addExpense/:id", async function(req, res) {
     })
     fun[0].Lendings.push(newLedger.id)
     fun[0].save()
+
+    const us = await user.findById(fun[0]._id)
+    const lent = us.Lendings
+
+    for (var i = 0; i < lent.length; i++) {
+        led = await Ledger.findById(lent[i])
+        var Total = led.amount
+        for (var j = 0; j < led.borrower.length; j++) {
+            var data = {
+                borrower: led.borrower[j],
+                Total: Total,
+                lender: led.lender
+            }
+            var check = {
+                borrower: led.borrower[j],
+                lender: led.lender
+            }
+
+            console.log(await ledgerbook.find(check))
+            if (await ledgerbook.exists(check)) {
+                Total = led.amount + Total
+
+                await ledgerbook.updateOne(check, { $inc: { Total: Total } })
+            } else {
+                await ledgerbook.create(data).catch((e) => {
+                    console.log(e)
+                })
+            }
+        }
+
+    }
 
     res.render("detail", { Group: Group })
 });

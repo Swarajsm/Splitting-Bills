@@ -1,18 +1,15 @@
 const mongoose = require('mongoose');
-const ledger = mongoose.model("ledger", new mongoose.Schema({
+const ledgerbook = mongoose.model("ledgerBook", new mongoose.Schema({
     "lender": {
         type: String,
         required: true
     },
     "borrower": {
-        type: Array,
+        type: String,
         required: true
     },
-    "borrowerNames": {
-        type: Array,
-        required: true
-    },
-    "amount": {
+
+    "Total": {
         type: Number,
         required: true
     },
@@ -21,4 +18,4 @@ const ledger = mongoose.model("ledger", new mongoose.Schema({
         required: true
     }
 }));
-module.exports = ledger;
+module.exports = ledgerbook;
