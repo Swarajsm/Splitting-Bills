@@ -13,9 +13,6 @@ const ledgerbook = mongoose.model("ledgerBook", new mongoose.Schema({
         type: Number,
         required: true
     },
-    "date": {
-        type: String,
-        required: true
-    }
+
 }));
 module.exports = ledgerbook;

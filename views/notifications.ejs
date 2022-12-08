@@ -15,20 +15,18 @@
 <body>
     <%- include('navbar.ejs') %>
         <h2>Notifications</h2>
-        <% borrower = ["Stuti","Vaishnavi", "Mayank"]%>
-            <% amount = [400, 800, 1200] %>
-                <ul>
-                    <% for(var i=0; i< borrower.length; i++){%>
-                        <li class="card">
-                            <div class="card-body">
-                                You lent
-                                <%= amount[i]%> to
-                                    <%= borrower[i] %>
-
-                            </div>
-                        </li>
-                        <%}%>
-                </ul>
+        <ul>
+            <% for(var i=0; i< borrowers.length; i++){%>
+                <li class="card">
+                    <div class="card-body">
+                        You lent
+                        <%= Total[i]%> to
+                            <%= borrowers[i]%>
+                                <a class="btn btn-success" href="/settleup/<%=result[i].id %>">Settle Up</a>
+                    </div>
+                </li>
+                <%}%>
+        </ul>
 
 </body>
 

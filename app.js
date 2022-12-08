@@ -49,15 +49,12 @@ app.get("/Group/:id", async function(req, res) {
     TransactionsList = Group.transaction
     transactionIDs = Group.transactionIDs
     TransactionsAmt = Group.Amounts
-        // for (var i = 0; i < TransactionsList.length; i++) {
-        //     Amount = await transactions.findById(transactionIDs[i])
-        //     TransactionsAmt.push(Amount.amount)
-        // }
-        // await Group.save()
+    id = Group._id
     parameters = {
         Group: Group,
         Transactions: TransactionsList,
-        TransactionsAmt: TransactionsAmt
+        TransactionsAmt: TransactionsAmt,
+        id: id
     }
     res.render("detail", parameters);
 });
@@ -100,10 +97,38 @@ app.get("/settings", function(req, res) {
 });
 
 app.get("/notifications/:id", async function(req, res) {
+    const search = {
+        lender: req.params.id,
 
-    res.render("notifications")
+    }
+    result = await ledgerbook.find(search)
+    var borrowerName = []
+    var amounts = []
+    for (var i = 0; i < result.length; i++) {
+        borrower = await user.findById(result[i].borrower)
+        borrowerName.push(borrower.name)
+        amounts.push(result[i].Total)
+    }
+    const paramaters = {
+        result: result,
+        borrowers: borrowerName,
+        Total: amounts
+    }
+    res.render("notifications", paramaters)
 })
 
+app.get("/settleup/:id", async function(req, res) {
+    const lenden = await ledgerbook.findById(req.params.id)
+    console.log(lenden)
+    b = await user.findById(lenden.borrower)
+    bname = b.name
+    console.log(bname)
+    const params = {
+        Total: lenden.Total,
+        borrower: bname,
+    }
+    res.render("settleup", params)
+});
 
 app.get("/detail", async function(req, res) {});
 
@@ -224,20 +249,25 @@ app.post("/addMember/:id", async function(req, res) {
     formdataa = {
         email: username
     }
+    find = await user.exists(formdataa)
     newv = await user.find(formdataa).catch((e) => {
         console.log(e);
     })
 
-    Group.memberArray.push(newv[0].name)
-    Group.MemberOids.push(newv[0]._id)
-    newv[0].Groups.push(Group.gname)
-    newv[0].GroupsOid.push(Group.id)
-    await newv[0].save()
-    await Group.save()
+    if (find) {
 
+        Group.memberArray.push(newv[0].name)
+        Group.MemberOids.push(newv[0]._id)
+        newv[0].Groups.push(Group.gname)
+        newv[0].GroupsOid.push(Group.id)
+        await newv[0].save()
+        await Group.save()
+    } else {
+        message = req.flash('error', 'user does not exist')
+            //alert("user does not exist")
+    }
 
-
-    res.render("detail", { Group: Group })
+    res.render("detail", { Group: Group, message: message })
 
 });
 app.post("/addExpense/:id", async function(req, res) {
@@ -290,40 +320,56 @@ app.post("/addExpense/:id", async function(req, res) {
     fun[0].save()
 
     const us = await user.findById(fun[0]._id)
-    const lent = us.Lendings
+    const l = newLedger.borrower
 
-    for (var i = 0; i < lent.length; i++) {
-        led = await Ledger.findById(lent[i])
-        var Total = led.amount
-        for (var j = 0; j < led.borrower.length; j++) {
-            var data = {
-                borrower: led.borrower[j],
-                Total: Total,
-                lender: led.lender
-            }
-            var check = {
-                borrower: led.borrower[j],
-                lender: led.lender
-            }
 
-            console.log(await ledgerbook.find(check))
-            if (await ledgerbook.exists(check)) {
-                Total = led.amount + Total
 
-                await ledgerbook.updateOne(check, { $inc: { Total: Total } })
-            } else {
-                await ledgerbook.create(data).catch((e) => {
-                    console.log(e)
-                })
-            }
+    var amount = newLedger.amount
+    for (var j = 0; j < l.length; j++) {
+        var data = {
+            borrower: l[j],
+            Total: amount,
+            lender: newLedger.lender
         }
+        var check = {
+            borrower: l[j],
+            lender: newLedger.lender
+        }
+        var check1 = {
+            borrower: l[j],
 
+        }
+        var check2 = {
+            lender: newLedger.lender
+        }
+        c = await ledgerbook.exists(check1)
+        c2 = await ledgerbook.exists(check2)
+
+        if (c) {
+            if (c2) {
+                x = await ledgerbook.find(check)
+                console.log(x)
+                console.log("-- -- --")
+                x.Total = newLedger.amount + x.Total
+
+                await ledgerbook.updateOne(check, { $inc: { Total: newLedger.amount } })
+            }
+
+        } else {
+            await ledgerbook.create(data).catch((e) => {
+                console.log(e)
+            })
+        }
     }
 
-    res.render("detail", { Group: Group })
+
+
+    res.render("detail", { Group: Group, id: id })
 });
 
-
+app.get('*', function(req, res) {
+    res.status(404).render("notfound");
+});
 //Setting up our server at port 3000
 app.listen(3000, function(req, res) {
     console.log("Server Started on Port 3000");
